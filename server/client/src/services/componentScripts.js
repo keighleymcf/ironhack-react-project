@@ -1,0 +1,3 @@
+const handleChange = () => {};
+
+const handleSubmit = () => {};

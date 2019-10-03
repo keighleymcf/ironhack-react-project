@@ -5,13 +5,29 @@
 * {
   margin: 0;
 }
-
+html {
+  width: 100vw;
+  height: 100vh;
+}
 body {
-  margin: 15px;
+  width: 100vw;
+  height: 100vh;
+}
+
+#root {
+  padding: 2.5vw;
+  width: 100vw;
+  height: 100vh;
   background-image: linear-gradient(120deg, #fdfbfb 0%, #ebedee 100%);
+  background-attachment: fixed;
   font-size: 10px;
   color: black;
   font-family: "Open Sans", sans-serif;
+}
+
+.App {
+  width: 100vw;
+  height: 100vh;
 }
 
 /*

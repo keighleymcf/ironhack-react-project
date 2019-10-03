@@ -4,7 +4,7 @@ import { render, unmountComponentAtNode } from "react-dom";
 import App from "./App";
 import { BrowserRouter } from "react-router-dom";
 import Adapter from "enzyme-adapter-react-16";
-import { shallow, configure } from "enzyme";
+import Enzyme, { shallow, configure } from "enzyme";
 import { routerWrapper, shallowWrapper } from "./testHelpers";
 import Home from "./components/Home";
 
@@ -15,12 +15,20 @@ it("checks if the test works", () => {
 });
 
 describe("app component", () => {
+  // Min and Keighley will check an option for componentDidMount
   it("renders without crashing", () => {
-    const div = document.createElement("div");
-    render(<App />, div);
-    unmountComponentAtNode(div);
+    const wrapper = shallow(<App />);
+    expect(wrapper.contains(<Home />)).toEqual(true);
   });
 });
+
+// describe("app component", () => {
+//   it("renders without crashing", () => {
+//     const div = document.createElement("div");
+//     render(<App />, div);
+//     unmountComponentAtNode(div);
+//   });
+// });
 
 // HOME
 describe("home component", () => {
@@ -36,11 +44,14 @@ describe("home component", () => {
   // If I scroll past point X, does the navbar slide down from the top of the screen?
 
   //Do the signup and login buttons render inside home?
-  // it("renders the signup button inside Home without crashing", () => {
-  //   const div = document.createElement("div");
-  //   //ReactDOM.render(shallow(<Home />), div);
-  //   ReactDOM.unmountComponentAtNode(div);
-  // });
+  it("renders the signup button inside Home without crashing", () => {
+    //const div = document.createElement("div");
+    const homeTest = shallow(<Home />);
+    homeTest.find("<Button>Sign up</Button>");
+    // const signup = "<Button>Sign up</Button>";
+    // expect(homeTest).toContainReact(signup);
+    //ReactDOM.unmountComponentAtNode(div);
+  });
 
   // it("renders the login button inside Home without crashing", () => {
   //   const div = document.createElement("div");
