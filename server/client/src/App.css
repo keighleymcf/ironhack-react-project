@@ -1,22 +1,33 @@
-.App {
-  text-align: center;
+@import url("https://fonts.googleapis.com/css?family=Open+Sans:400,700&display=swap");
+/*gradient for buttons: linear-gradient(15deg, #13547a 0%, #80d0c7 100%);*/
+/*gradient for text: (15deg, #1c78ad 0%, #72bbb2 100%)*/
+
+* {
+  margin: 0;
 }
 
-.App-logo {
-  height: 40vmin;
+body {
+  margin: 15px;
+  background-image: linear-gradient(120deg, #fdfbfb 0%, #ebedee 100%);
+  font-size: 10px;
+  color: black;
+  font-family: "Open Sans", sans-serif;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+/*
+.Home {
+  text-align: left;
+}
+.Home h1 {
+  background: -webkit-linear-gradient(15deg, #1c78ad 0%, #72bbb2 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-size: 3.5rem;
 }
 
-.App-link {
-  color: #09d3ac;
+button {
+  border: 3px solid #72bbb2;
+  border-radius: 100px;
+  background: transparent;
 }
+*/

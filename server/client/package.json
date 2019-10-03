@@ -6,7 +6,8 @@
     "react": "^16.10.1",
     "react-dom": "^16.10.1",
     "react-router-dom": "^5.1.2",
-    "react-scripts": "3.1.2"
+    "react-scripts": "3.1.2",
+    "styled-components": "^4.4.0"
   },
   "proxy": "http://localhost:5555",
   "scripts": {
@@ -29,5 +30,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "jest": "^24.9.0"
   }
 }
