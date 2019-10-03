@@ -1,31 +1,33 @@
 import React from "react";
+import ReactDOM from "react-dom";
 import { render, unmountComponentAtNode } from "react-dom";
 import App from "./App";
 import { BrowserRouter } from "react-router-dom";
+import Adapter from "enzyme-adapter-react-16";
+import { shallow, configure } from "enzyme";
+import { routerWrapper, shallowWrapper } from "./testHelpers";
+import Home from "./components/Home";
 
-it("tests if the test works", () => {
+configure({ adapter: new Adapter() });
+
+it("checks if the test works", () => {
   expect(true).toEqual(true);
 });
 
 describe("app component", () => {
   it("renders without crashing", () => {
     const div = document.createElement("div");
-    render(
-      <BrowserRouter>
-        <App />
-      </BrowserRouter>,
-      div
-    );
+    render(<App />, div);
     unmountComponentAtNode(div);
   });
 });
 
 // HOME
 describe("home component", () => {
-  // Does the Home render?
+  // Does the Home render? //USES ROUTER WRAPPER WORKAROUND - IMPROVE LATER
   it("renders the Home component inside App without crashing", () => {
     const div = document.createElement("div");
-    ReactDOM.render(<Home />, div);
+    ReactDOM.render(shallowWrapper(<Home />), div);
     ReactDOM.unmountComponentAtNode(div);
   });
 
@@ -34,17 +36,17 @@ describe("home component", () => {
   // If I scroll past point X, does the navbar slide down from the top of the screen?
 
   //Do the signup and login buttons render inside home?
-  it("renders the signup button inside Home without crashing", () => {
-    const div = document.createElement("div");
-    //ReactDOM.render(shallow(<Home />), div);
-    ReactDOM.unmountComponentAtNode(div);
-  });
+  // it("renders the signup button inside Home without crashing", () => {
+  //   const div = document.createElement("div");
+  //   //ReactDOM.render(shallow(<Home />), div);
+  //   ReactDOM.unmountComponentAtNode(div);
+  // });
 
-  it("renders the login button inside Home without crashing", () => {
-    const div = document.createElement("div");
-    //ReactDOM.render(shallow(<Home />), div);
-    ReactDOM.unmountComponentAtNode(div);
-  });
+  // it("renders the login button inside Home without crashing", () => {
+  //   const div = document.createElement("div");
+  //   //ReactDOM.render(shallow(<Home />), div);
+  //   ReactDOM.unmountComponentAtNode(div);
+  // });
 
   // If I click on signup, am I redirected to the signup page?
 
