@@ -3,7 +3,12 @@ const Schema = mongoose.Schema;
 
 const practiceSchema = new Schema(
   {
-    owner: { type: Schema.Types.ObjectId, ref: "User" },
+    owner: [
+        {
+          type: Schema.Types.ObjectId, 
+          ref: "User"
+        }
+    ],
     name: {
       type: String,
       required: true
