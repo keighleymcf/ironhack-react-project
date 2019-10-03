@@ -9,7 +9,7 @@ const practiceSchema = new Schema(
       required: true
     },
     type: { type: String, required: true },
-    address: String,
+    address: {street: String, city: String, zip: String},
     phone: String,
     hours: {
       monday: String,

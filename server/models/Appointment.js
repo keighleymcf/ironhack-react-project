@@ -5,7 +5,7 @@ const appointmentSchema = new Schema(
   {
     owner: { type: Schema.Types.ObjectId, ref: "User" },
     type: { type: String, required: true },
-    date: Date /*Moment???*/,
+    date: Date,
     practice: { type: Schema.Types.ObjectId, ref: "Practice" },
     series: { type: Schema.Types.ObjectId, ref: "Series" },
     documents: [String]
