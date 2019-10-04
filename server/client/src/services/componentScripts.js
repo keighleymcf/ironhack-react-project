@@ -1,3 +1,0 @@
-const handleChange = () => {};
-
-const handleSubmit = () => {};

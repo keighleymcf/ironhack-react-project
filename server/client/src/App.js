@@ -1,33 +1,92 @@
-import React from "react";
-import logo from "./logo.svg";
-import "./App.css";
-import Home from "./components/Home";
-import { BrowserRouter, Route, Switch } from "react-router-dom";
+import React, { Component } from "react";
+import "./App.scss";
+// keep material ui baseline design?
+import CssBaseline from "@material-ui/core/CssBaseline";
+import Home from "./components/home/Home";
+import { Route, Switch, Redirect } from "react-router-dom";
 import Navbar from "./components/Navbar";
-import Signup from "./components/Signup";
-import Login from "./components/Login";
+import Signup from "./components/signup/Signup";
+import Login from "./components/login/Login";
 import Dashboard from "./components/Dashboard";
 import Appointments from "./components/Appointments";
 import Practices from "./components/Practices";
 import Series from "./components/Series";
+import { AuthProvider } from "./contexts/AuthContext";
 
-function App() {
-  return (
-    <div className="App">
-      <Route exact path="/" component={Home} />
-      <>
-        <Navbar />
-        <Switch>
-          <Route exact path="/auth/signup" component={Signup} />
-          <Route exact path="/auth/login" component={Login} />
-          <Route exact path="/dashboard" component={Dashboard} />
-          <Route exact path="/appointments" component={Appointments} />
-          <Route exact path="/practices" component={Practices} />
-          <Route exact path="/series" component={Series} />
-        </Switch>
-      </>
-    </div>
-  );
+//IF USING MATERIAL UI STYLING make sure to export component as export default WithStyles(styles)(App)
+export default class App extends Component {
+  state = {
+    user: this.props.user
+  };
+
+  setUser = user => {
+    this.setState({ user });
+  };
+
+  render() {
+    return (
+      <div className="App">
+        <AuthProvider value={{ user: this.state.user, setUser: this.setUser }}>
+          <Route exact path="/" component={Home} />
+
+          <>
+            <Navbar />
+            <Switch>
+              {/* Signup and Login only available if no user is logged in */}
+              <Route
+                exact
+                path="/auth/signup"
+                render={props => {
+                  if (!this.state.user) return <Signup {...props} />;
+                  else return <Redirect to="/dashboard" />;
+                }}
+              />
+              <Route
+                exact
+                path="/auth/login"
+                render={props => {
+                  if (!this.state.user) return <Signup {...props} />;
+                  else return <Redirect to="/dashboard" />;
+                }}
+              />
+              {/* These routes are only avialable if a user is logged in */}
+              <Route
+                exact
+                path="/dashboard"
+                render={props => {
+                  if (this.state.user) return <Dashboard {...props} />;
+                  else return <Redirect to="/" />;
+                }}
+              />
+              <Route
+                exact
+                path="/appointments"
+                render={props => {
+                  if (this.state.user) return <Appointments {...props} />;
+                  else return <Redirect to="/" />;
+                }}
+              />
+              <Route
+                exact
+                path="/practices"
+                render={props => {
+                  if (this.state.user) return <Practices {...props} />;
+                  else return <Redirect to="/" />;
+                }}
+              />
+              <Route
+                exact
+                path="/series"
+                render={props => {
+                  if (this.state.user) return <Series {...props} />;
+                  else return <Redirect to="/" />;
+                }}
+              />
+            </Switch>
+          </>
+        </AuthProvider>
+      </div>
+    );
+  }
 }
-
-export default App;
+//IF USING MATERIAL UI STYLING make sure to export component as export default WithStyles(styles)(App)
