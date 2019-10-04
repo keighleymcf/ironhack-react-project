@@ -45,7 +45,7 @@ export default class App extends Component {
                 exact
                 path="/auth/login"
                 render={props => {
-                  if (!this.state.user) return <Signup {...props} />;
+                  if (!this.state.user) return <Login {...props} />;
                   else return <Redirect to="/dashboard" />;
                 }}
               />
