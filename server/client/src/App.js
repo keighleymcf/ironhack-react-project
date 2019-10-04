@@ -4,13 +4,13 @@ import "./App.scss";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import Home from "./components/home/Home";
 import { Route, Switch, Redirect } from "react-router-dom";
-import Navbar from "./components/Navbar";
+import Navbar from "./components/navbar/Navbar";
 import Signup from "./components/signup/Signup";
 import Login from "./components/login/Login";
-import Dashboard from "./components/Dashboard";
-import Appointments from "./components/Appointments";
-import Practices from "./components/Practices";
-import Series from "./components/Series";
+import Dashboard from "./components/dashboard/Dashboard";
+import Appointments from "./components/appointments/Appointments";
+import Practices from "./components/practices/Practices";
+import Series from "./components/series/Series";
 import { AuthProvider } from "./contexts/AuthContext";
 
 //IF USING MATERIAL UI STYLING make sure to export component as export default WithStyles(styles)(App)
