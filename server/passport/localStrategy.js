@@ -7,21 +7,22 @@ passport.use(new LocalStrategy({
     usernameField: 'username',
     passwordField: 'password'
   }, 
-  (username, password, done) => {
-    User.findOne({ username })
-    .then(foundUser => {
+  async (username, password, done) => {
+    let foundUser;
+    try {
+      foundUser = await User.findOne({ username });
       if (!foundUser) {
         done(null, false, { message: 'Incorrect username' });
         return;
       }
-
-      if (!bcrypt.compareSync(password, foundUser.password)) {
-        done(null, false, { message: 'Incorrect password' });
-        return;
-      }
-
-      done(null, foundUser);
-    })
-    .catch(err => done(err));
+    } catch (e) {
+      return done(e);
+    } 
+    const match = await bcrypt.compare(password, foundUser.password);
+    if (!match) {
+      done(null, false, { message: 'Incorrect password' });
+      return;
+    }
+    return done(null, foundUser);
   }
 ));

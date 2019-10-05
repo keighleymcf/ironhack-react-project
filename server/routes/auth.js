@@ -47,15 +47,15 @@ router.post("/signup", (req, res, next) => {
       .json({ message: "Your password must be at least 8 characters" });
   }
 
-  User.findOne({ username }, "username", (err, user) => {
+  User.findOne({ username }, "username", async (err, user) => {
     if (user !== null) {
       return res
         .status(400)
         .json({ message: "An account for this email already exists" });
     }
 
-    const salt = bcrypt.genSaltSync(bcryptSalt);
-    const hashPass = bcrypt.hashSync(password, salt);
+    const salt = await bcrypt.genSalt(bcryptSalt);
+    const hashPass = await bcrypt.hash(password, salt);
 
     return User.create({ username: username, password: hashPass }).then(
       dbUser => {
