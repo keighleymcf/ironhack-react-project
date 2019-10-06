@@ -103,56 +103,39 @@ class NewAppointment extends Component {
                   {this.getStepContent(index)}
                   <div className={classes.actionsContainer}>
                     <div>
-                          <Button
-                            disabled={this.state.activeStep === 0}
-                            onClick={this.handleBack}
-                            className={classes.button}
-                          >
-                            Back
-                          </Button>
-                          <Button
-                            variant="contained"
-                            color="primary"
-                            onClick={this.handleNext}
-                            className={classes.button}
-                          >
-                            {this.state.activeStep === steps.length - 1
-                              ? "Finish"
-                              : "Next"}
-                          </Button>
-                        </div>
+                      <Button
+                        disabled={this.state.activeStep === 0}
+                        onClick={this.handleBack}
+                        className={classes.button}
+                      >
+                        Back
+                      </Button>
+                      <Button
+                        variant="contained"
+                        color="primary"
+                        onClick={this.handleNext}
+                        className={classes.button}
+                      >
+                        {this.state.activeStep === steps.length - 1
+                          ? "Finish"
+                          : "Next"}
+                      </Button>
                     </div>
-                    
+                  </div>
                 </StepContent>
-              </Step> 
+              </Step>
             );
           })}
           {/* up end of map, below end of return and render */}
         </Stepper>
+        {this.state.activeStep === steps.length && (
+          <Link to="/appointments">
+            <Button>See all my appointments</Button>
+          </Link>
+        )}
       </div>
     );
   }
 }
 
 export default withStyles(NewAppointmentStyles)(NewAppointment);
-
-/*
-
-            : (
-              <div>
-                <Typography className={classes.instructions}>
-                  Appointment saved
-                </Typography>
-                <Button
-                  onClick={this.handleReset}
-                  className={classes.button}
-                >
-                  Add a new appointment
-                </Button>
-                <Link to="/appointments">
-                  <Button color="primary" className={classes.button}>
-                    View all my appointments
-                  </Button>
-                </Link>
-              </div> 
-            ) */

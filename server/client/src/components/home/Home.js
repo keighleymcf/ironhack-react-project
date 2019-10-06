@@ -13,7 +13,7 @@ class Home extends React.Component {
   handleLogout = event => {
     event.preventDefault();
     logout().then(() => {
-      this.setContext({ user: null });
+      this.context.setUser({ user: null });
     });
   };
 
