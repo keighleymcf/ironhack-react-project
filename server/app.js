@@ -66,7 +66,7 @@ app.use(express.static(path.join(__dirname, "public")));
 // });
 
 // default value for title local
-app.locals.title = "Express - Generated with IronGenerator";
+app.locals.title = "kill all humans - working title";
 
 // Enable authentication using session + passport
 app.use(
@@ -88,5 +88,8 @@ app.use("/auth", authRoutes);
 
 const appointmentsRoutes = require("./routes/appointments");
 app.use("/appointments", appointmentsRoutes);
+
+const practicesRoutes = require("./routes/practices");
+app.use("/practices", practicesRoutes);
 
 module.exports = app;
