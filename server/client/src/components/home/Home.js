@@ -6,19 +6,20 @@ import { logout } from "../../services/api";
 
 class Home extends React.Component {
   static contextType = AuthContext;
-  state = {
+  /*  state = {
     user: this.context.user
-  };
+  }; */
 
   handleLogout = event => {
-    event.preventDefault();
+    /*   event.preventDefault(); */
+    console.log("test");
     logout().then(() => {
-      this.context.setUser({ user: null });
+      this.context.setUser(null);
     });
   };
 
   Buttons = () => {
-    let user = this.state.user;
+    let user = this.context.user;
     if (!user) {
       return (
         <>

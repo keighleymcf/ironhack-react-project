@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Redirect } from "react-router-dom";
 import {
   AppBar,
   Typography,
@@ -15,19 +16,12 @@ import AuthContext from "../../contexts/AuthContext";
 class Navbar extends Component {
   static contextType = AuthContext;
 
-  state = {
-    user: this.context.user
-  };
-
   handleLogout = event => {
-    event.preventDefault();
-    logout()
-      .then(() => {
-        this.context.setUser({ user: null });
-      })
-      .then(() => {
-        this.props.history.push("/");
-      });
+    /*   event.preventDefault(); */
+    console.log("test");
+    logout().then(() => {
+      this.context.setUser(null);
+    });
   };
 
   render() {
