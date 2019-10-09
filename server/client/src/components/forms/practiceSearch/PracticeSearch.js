@@ -98,10 +98,14 @@ export default class PracticeSearch extends Component {
 
   getPractices = () => {
     const query = this.state.query;
-    axios.get(`/practices/search/${query}`).then(response => {
-      let practices = response.data;
-      this.setState({ practices });
-    });
+    if (query === "") {
+      this.getAllPractices();
+    } else {
+      axios.get(`/practices/search/${query}`).then(response => {
+        let practices = response.data;
+        this.setState({ practices });
+      });
+    }
   };
 
   onSearch = event => {
@@ -112,9 +116,10 @@ export default class PracticeSearch extends Component {
     this.getPractices();
   };
 
-    componentDidMount() {
-      this.getPractices();
-    }
+  componentDidMount() {
+    console.log("COM DID MOUNT");
+    this.getPractices();
+  }
 
   render() {
     console.log(this.state);
@@ -141,7 +146,6 @@ export default class PracticeSearch extends Component {
             <Button>Add new practice</Button>
           </Link>
         </div>
-
         <div>
           <Typography>Practice results</Typography>
           {this.state.practices.map(practice => {
@@ -182,7 +186,7 @@ export default class PracticeSearch extends Component {
                           Edit practice
                         </Link>
                       </MenuItem>
-
+                      ​
                       <MenuItem
                         onClick={() => {
                           console.log(practice._id);
@@ -191,7 +195,6 @@ export default class PracticeSearch extends Component {
                       >
                         Remove practice from my list
                       </MenuItem>
-
                       <MenuItem
                         onClick={() => {
                           console.log(practice._id);

@@ -14,7 +14,7 @@ const MongoStore = require("connect-mongo")(session);
 const flash = require("connect-flash");
 
 mongoose
-  .connect("mongodb://localhost/server" || process.env.MONGODB_URI , {
+  .connect("mongodb://localhost/server" || process.env.MONGODB_URI, {
     useNewUrlParser: true,
     useUnifiedTopology: true
   })
@@ -50,20 +50,7 @@ app.use(
   })
 );
 
-// app.set("views", path.join(__dirname, "views"));
-// app.set("view engine", "hbs");
-app.use(express.static(path.join(__dirname, "public")));
-// app.use(favicon(path.join(__dirname, 'public', 'images', 'favicon.ico')));
-
-// hbs.registerHelper("ifUndefined", (value, options) => {
-//   if (arguments.length < 2)
-//     throw new Error("Handlebars Helper ifUndefined needs 1 parameter");
-//   if (typeof value !== undefined) {
-//     return options.inverse(this);
-//   } else {
-//     return options.fn(this);
-//   }
-// });
+app.use(express.static(path.join(__dirname, "/client/build")));
 
 // default value for title local
 app.locals.title = "kill all humans - working title";
@@ -91,5 +78,10 @@ app.use("/appointments", appointmentsRoutes);
 
 const practicesRoutes = require("./routes/practices");
 app.use("/practices", practicesRoutes);
+
+app.use((req, res) => {
+  // If no routes match, send them the React HTML.
+  res.sendFile(__dirname + "/client/build/index.html");
+});
 
 module.exports = app;

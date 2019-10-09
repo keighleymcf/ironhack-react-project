@@ -1,124 +1,124 @@
-import React from "react";
-import ReactDOM from "react-dom";
-import { render, unmountComponentAtNode } from "react-dom";
-import App from "./App";
-import { BrowserRouter } from "react-router-dom";
-import Adapter from "enzyme-adapter-react-16";
-import Enzyme, { shallow, configure } from "enzyme";
-import { routerWrapper, shallowWrapper } from "./testHelpers";
-import Home from "./components/Home";
+// import React from "react";
+// import ReactDOM from "react-dom";
+// import { render, unmountComponentAtNode } from "react-dom";
+// import App from "./App";
+// import { BrowserRouter } from "react-router-dom";
+// import Adapter from "enzyme-adapter-react-16";
+// import Enzyme, { shallow, configure } from "enzyme";
+// import { routerWrapper, shallowWrapper } from "./testHelpers";
+// import Home from "./components/Home";
 
-configure({ adapter: new Adapter() });
+// configure({ adapter: new Adapter() });
 
-it("checks if the test works", () => {
-  expect(true).toEqual(true);
-});
-
-describe("app component", () => {
-  // Min and Keighley will check an option for componentDidMount
-  it("renders without crashing", () => {
-    const wrapper = shallow(<App />);
-    expect(wrapper.contains(<Home />)).toEqual(true);
-  });
-});
+// it("checks if the test works", () => {
+//   expect(true).toEqual(true);
+// });
 
 // describe("app component", () => {
+//   // Min and Keighley will check an option for componentDidMount
 //   it("renders without crashing", () => {
-//     const div = document.createElement("div");
-//     render(<App />, div);
-//     unmountComponentAtNode(div);
+//     const wrapper = shallow(<App />);
+//     expect(wrapper.contains(<Home />)).toEqual(true);
 //   });
 // });
 
-// HOME
-describe("home component", () => {
-  // Does the Home render? //USES ROUTER WRAPPER WORKAROUND - IMPROVE LATER
-  it("renders the Home component inside App without crashing", () => {
-    const div = document.createElement("div");
-    ReactDOM.render(shallowWrapper(<Home />), div);
-    ReactDOM.unmountComponentAtNode(div);
-  });
+// // describe("app component", () => {
+// //   it("renders without crashing", () => {
+// //     const div = document.createElement("div");
+// //     render(<App />, div);
+// //     unmountComponentAtNode(div);
+// //   });
+// // });
 
-  // does the navbar render but not show up at the top (hidden/only shows on scroll down)?
+// // HOME
+// describe("home component", () => {
+//   // Does the Home render? //USES ROUTER WRAPPER WORKAROUND - IMPROVE LATER
+//   it("renders the Home component inside App without crashing", () => {
+//     const div = document.createElement("div");
+//     ReactDOM.render(shallowWrapper(<Home />), div);
+//     ReactDOM.unmountComponentAtNode(div);
+//   });
 
-  // If I scroll past point X, does the navbar slide down from the top of the screen?
+//   // does the navbar render but not show up at the top (hidden/only shows on scroll down)?
 
-  //Do the signup and login buttons render inside home?
-  it("renders the signup button inside Home without crashing", () => {
-    //const div = document.createElement("div");
-    const homeTest = shallow(<Home />);
-    homeTest.find("<Button>Sign up</Button>");
-    // const signup = "<Button>Sign up</Button>";
-    // expect(homeTest).toContainReact(signup);
-    //ReactDOM.unmountComponentAtNode(div);
-  });
+//   // If I scroll past point X, does the navbar slide down from the top of the screen?
 
-  // it("renders the login button inside Home without crashing", () => {
-  //   const div = document.createElement("div");
-  //   //ReactDOM.render(shallow(<Home />), div);
-  //   ReactDOM.unmountComponentAtNode(div);
-  // });
+//   //Do the signup and login buttons render inside home?
+//   it("renders the signup button inside Home without crashing", () => {
+//     //const div = document.createElement("div");
+//     const homeTest = shallow(<Home />);
+//     homeTest.find("<Button>Sign up</Button>");
+//     // const signup = "<Button>Sign up</Button>";
+//     // expect(homeTest).toContainReact(signup);
+//     //ReactDOM.unmountComponentAtNode(div);
+//   });
 
-  // If I click on signup, am I redirected to the signup page?
+//   // it("renders the login button inside Home without crashing", () => {
+//   //   const div = document.createElement("div");
+//   //   //ReactDOM.render(shallow(<Home />), div);
+//   //   ReactDOM.unmountComponentAtNode(div);
+//   // });
 
-  //it("redirects to the signup page when the signup button is clicked");
+//   // If I click on signup, am I redirected to the signup page?
 
-  // If I click on login, am I redirected to the login page?
-});
+//   //it("redirects to the signup page when the signup button is clicked");
 
-// SIGN UP
+//   // If I click on login, am I redirected to the login page?
+// });
 
-// Does the form render to enter email(username) and password?
+// // SIGN UP
 
-// Does the state update when the user types into the email input?
+// // Does the form render to enter email(username) and password?
 
-// What about password state…????
+// // Does the state update when the user types into the email input?
 
-// Does the Sign up button post a new user when clicked?
+// // What about password state…????
 
-// // username and password must meet conditions
+// // Does the Sign up button post a new user when clicked?
 
-// Is the user added to the db with a username and password?
+// // // username and password must meet conditions
 
-// Does the button click redirect to the log in page?
+// // Is the user added to the db with a username and password?
 
-// LOG IN
+// // Does the button click redirect to the log in page?
 
-// Does the form render to enter email(username) and password?
+// // LOG IN
 
-// Does the state update when the user types into the email input?
+// // Does the form render to enter email(username) and password?
 
-// What about password state…????
+// // Does the state update when the user types into the email input?
 
-// //username and password meeting conditions
+// // What about password state…????
 
-// Does the log in button get a matching user from the db when clicked and update user context?
+// // //username and password meeting conditions
 
-// Does the button click redirect to the dashboard?
+// // Does the log in button get a matching user from the db when clicked and update user context?
 
-// DASHBOARD
+// // Does the button click redirect to the dashboard?
 
-// Does the dashboard render?
+// // DASHBOARD
 
-// Does the dashboard use the correct user?
+// // Does the dashboard render?
 
-// Does a tile for all appointments, all appt series, and all practices render?
+// // Does the dashboard use the correct user?
 
-// Do the tiles route to the correct pages when clicked?
+// // Does a tile for all appointments, all appt series, and all practices render?
 
-// ALL APPOINTMENTS
+// // Do the tiles route to the correct pages when clicked?
 
-// Does a list of all upcoming appointments render with appt db entries for the correct user?
-// Does a list of all past appointments render?
+// // ALL APPOINTMENTS
 
-// Does it show all (or XX most recent/soonest?) appointments? //Should it show first 5 upcoming and first 5 past, with a button to load the next 5?
+// // Does a list of all upcoming appointments render with appt db entries for the correct user?
+// // Does a list of all past appointments render?
 
-// Are the upcoming appointments ordered by ascending date beginning with today?
+// // Does it show all (or XX most recent/soonest?) appointments? //Should it show first 5 upcoming and first 5 past, with a button to load the next 5?
 
-// Are the past appointments ordered by descending date beginning with most recent from today?
+// // Are the upcoming appointments ordered by ascending date beginning with today?
 
-// - Add button
+// // Are the past appointments ordered by descending date beginning with most recent from today?
 
-// Does a button to add a new appointment render?
+// // - Add button
 
-// Does the button route to the add new appt form with no prefilled sections?
+// // Does a button to add a new appointment render?
+
+// // Does the button route to the add new appt form with no prefilled sections?

@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const Practice = require("../models/Practice");
 const mongoose = require("mongoose");
-
+​
 /* get all practices in the database */
 router.get("/", (req, res) => {
   Practice.find()
@@ -13,14 +13,14 @@ router.get("/", (req, res) => {
       res.json(err);
     });
 });
-
+​
 /* get all practices saved by user*/
 router.get("/saved", (req, res) => {
   const user = req.user._id.toString();
   let ownerArray = [];
   let savedPractices = [];
   Practice.find({ owner: { $all: [req.user._id] } })
-
+​
     .then(response => {
       /*  savedPractices = response.data.filter(practice => {
         ownerArray = practice.owner;
@@ -29,14 +29,14 @@ router.get("/saved", (req, res) => {
         });
       });
       res.json(savedPractices); */
-
+​
       res.json(response);
     })
     .catch(err => {
       res.json(err);
     });
 });
-
+​
 /* get one practice */
 router.get("/:id", (req, res) => {
   Practice.findById(req.params.id)
@@ -51,27 +51,28 @@ router.get("/:id", (req, res) => {
       res.json(err);
     });
 });
-
+​
 /* search for practice by name */
 router.get("/search/:query", (req, res) => {
   if (!req.params.query) {
     Practice.find()
-    .then(practices => {
-      res.json(practices);
-    })
-    .catch(err => {
-      res.json(err);
-    });
+      .then(practices => {
+        res.json(practices);
+      })
+      .catch(err => {
+        res.json(err);
+      });
   } else {
-  Practice.find({ name: new RegExp(req.params.query, "i") })
-    .then(practices => {
-      res.json(practices);
-    })
-    .catch(err => {
-      res.json(err);
-    });}
+    Practice.find({ name: new RegExp(req.params.query, "i") })
+      .then(practices => {
+        res.json(practices);
+      })
+      .catch(err => {
+        res.json(err);
+      });
+  }
 });
-
+​
 /* create new practice */
 router.post("/", (req, res) => {
   const {
@@ -103,7 +104,7 @@ router.post("/", (req, res) => {
       res.json(err);
     });
 });
-
+​
 /* edit practice */
 router.put("/:id", (req, res) => {
   const {
@@ -144,7 +145,7 @@ router.put("/:id", (req, res) => {
       res.json(err);
     });
 });
-
+​
 /* remove practice from user's saved list */
 router.put("/removeOwner/:id", (req, res) => {
   console.log(req.user._id);
@@ -164,7 +165,7 @@ router.put("/removeOwner/:id", (req, res) => {
       res.json(err);
     });
 });
-
+​
 /* Add practice to user's saved list */
 router.put("/addOwner/:id", (req, res) => {
   console.log(req.user._id);
@@ -184,8 +185,8 @@ router.put("/addOwner/:id", (req, res) => {
       res.json(err);
     });
 });
-
+​
 /* delete practice */
 /* NOT ALLOWED FOR NOW */
-
+​
 module.exports = router;
