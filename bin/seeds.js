@@ -8,7 +8,7 @@ const Series = require("../models/Series");
 
 const bcryptSalt = 10;
 mongoose
-  .connect("mongodb://localhost/server" || process.env.MONGODB_URI, {
+  .connect(process.env.MONGODB_URI, {
     useNewUrlParser: true
   })
   .then(x => {
