@@ -41,7 +41,7 @@ export default class Practices extends Component {
   };
 
   showRemoveDialog = practice => {
-    console.log("showRemoveDialog")
+    console.log("showRemoveDialog");
     this.setState({
       showDialog: true,
       practiceToRemove: practice
@@ -84,8 +84,8 @@ export default class Practices extends Component {
         <div>
           <h1>My Practices</h1>
         </div>
-        <Link to="/practices/new">
-          <Button>Save new practice</Button>
+        <Link to="/practices/search">
+          <Button>Search for a new practice</Button>
         </Link>
         <div>
           {this.state.practices.map(practice => {
@@ -93,8 +93,8 @@ export default class Practices extends Component {
               <Card key={practice._id}>
                 <CardContent>
                   <div>
+                    <Typography>{practice.name}</Typography>
                     <Typography>{practice.type}</Typography>
-                    <Typography>{practice.date}</Typography>
                   </div>
                   <div>
                     <IconButton

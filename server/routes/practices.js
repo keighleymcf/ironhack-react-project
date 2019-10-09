@@ -54,13 +54,22 @@ router.get("/:id", (req, res) => {
 
 /* search for practice by name */
 router.get("/search/:query", (req, res) => {
-  Practice.find({ name: new RegExp(req.params.query, "i") })
+  if (!req.params.query) {
+    Practice.find()
     .then(practices => {
       res.json(practices);
     })
     .catch(err => {
       res.json(err);
     });
+  } else {
+  Practice.find({ name: new RegExp(req.params.query, "i") })
+    .then(practices => {
+      res.json(practices);
+    })
+    .catch(err => {
+      res.json(err);
+    });}
 });
 
 /* create new practice */
@@ -154,29 +163,26 @@ router.put("/removeOwner/:id", (req, res) => {
       console.log(err);
       res.json(err);
     });
+});
 
-  // const ownerToRemove = req.user._id.toString();
-  // const ownerArray = [];
-  // const updatedOwners = [];
-  // Practice.findById(req.params.id)
-  //   .then(response => {
-  //     return (ownerArray = response.owner);
-  //   })
-  //   .then(() => {
-  //     updatedOwners = ownerArray.filter(ownerId => {
-  //       return ownerId.toString() !== ownerToRemove;
-  //     });
-  //   })
-  //   .then(() => {
-  //     Practice.findByIdAndUpdate(
-  //       req.params.id,
-  //       {
-  //         owner: updatedOwners
-  //       },
-  //       // { new: true } ensures that we are getting the updated document in the .then callback
-  //       { new: true }
-  //     );
-  //   })
+/* Add practice to user's saved list */
+router.put("/addOwner/:id", (req, res) => {
+  console.log(req.user._id);
+  Practice.findByIdAndUpdate(
+    req.params.id,
+    { $addToSet: { owner: req.user._id } },
+    { new: true }
+  )
+    .then(updatedPractice => {
+      console.log(updatedPractice);
+      return res.json({
+        message: `${updatedPractice.name} has been added to your saved list`
+      });
+    })
+    .catch(err => {
+      console.log(err);
+      res.json(err);
+    });
 });
 
 /* delete practice */

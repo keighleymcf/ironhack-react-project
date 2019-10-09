@@ -14,6 +14,7 @@ import Series from "./components/series/Series";
 import NewAppointment from "./components/forms/newAppointment/NewAppointment";
 import Appointment from "./components/appointments/appointment/Appointment";
 import EditAppointment from "./components/forms/editAppointment/EditAppointment";
+import PracticeSearch from "./components/forms/practiceSearch/PracticeSearch";
 import { AuthProvider } from "./contexts/AuthContext";
 
 //IF USING MATERIAL UI STYLING make sure to export component as export default WithStyles(styles)(App)
@@ -98,6 +99,14 @@ export default class App extends Component {
                 path="/practices"
                 render={props => {
                   if (this.state.user) return <Practices {...props} />;
+                  else return <Redirect to="/" />;
+                }}
+              />
+              <Route
+                exact
+                path="/practices/search"
+                render={props => {
+                  if (this.state.user) return <PracticeSearch {...props} />;
                   else return <Redirect to="/" />;
                 }}
               />

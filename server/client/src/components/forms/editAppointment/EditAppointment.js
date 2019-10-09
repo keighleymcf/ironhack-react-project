@@ -31,7 +31,6 @@ export default class EditAppointment extends Component {
   }
 
   handleChange = event => {
-    console.log(event.target);
     const { name, value } = event.target;
     this.setState({
       [name]: value
