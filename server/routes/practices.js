@@ -15,10 +15,19 @@ router.get("/", (req, res) => {
 });
 
 /* get all practices saved by user*/
-router.get("/saved/", (req, res) => {
-  Practice.find({ owner: req.user._id })
-    .then(practices => {
-      res.json(practices);
+router.get("/saved", (req, res) => {
+  const user = req.user._id.toString();
+  let ownerArray = [];
+  let savedPractices = [];
+  Practice.find()
+    .then(response => {
+      savedPractices = response.data.filter(practice => {
+        ownerArray = practice.owner;
+        return ownerArray.filter(owner => {
+          return owner.toString() === user;
+        });
+      });
+      res.json(savedPractices);
     })
     .catch(err => {
       res.json(err);
@@ -26,7 +35,7 @@ router.get("/saved/", (req, res) => {
 });
 
 /* get one practice */
-router.get("/id/:id", (req, res) => {
+router.get("/:id", (req, res) => {
   Practice.findById(req.params.id)
     .then(practice => {
       if (!practice) {
@@ -66,7 +75,7 @@ router.post("/", (req, res) => {
     thursday,
     friday
   } = req.body;
-  const owner  = req.user._id;
+  const owner = req.user._id;
   return Practice.create({
     owner,
     name,
@@ -83,7 +92,7 @@ router.post("/", (req, res) => {
     });
 });
 
-/* edit appt */
+/* edit practice */
 router.put("/:id", (req, res) => {
   const {
     name,
@@ -117,6 +126,41 @@ router.put("/:id", (req, res) => {
   )
     .then(updatedAppointment => {
       return res.json(updatedAppointment);
+    })
+    .catch(err => {
+      console.log(err);
+      res.json(err);
+    });
+});
+
+/* remove practice from user's saved list */
+router.put("removeOwner/:id", (req, res) => {
+  const ownerToRemove = req.user._id.toString();
+  const ownerArray = [];
+  const updatedOwners = [];
+  Practice.findById(req.params.id)
+    .then(response => {
+      return (ownerArray = response.owner);
+    })
+    .then(() => {
+      updatedOwners = ownerArray.filter(ownerId => {
+        return ownerId.toString() !== ownerToRemove;
+      });
+    })
+    .then(() => {
+      Practice.findByIdAndUpdate(
+        req.params.id,
+        {
+          owner: updatedOwners
+        },
+        // { new: true } ensures that we are getting the updated document in the .then callback
+        { new: true }
+      );
+    })
+    .then(updatedPractice => {
+      return res.json({
+        message: `${updatedPractice.name} has been removed from your saved list`
+      });
     })
     .catch(err => {
       console.log(err);
