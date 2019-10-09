@@ -14,7 +14,7 @@ const MongoStore = require("connect-mongo")(session);
 const flash = require("connect-flash");
 
 mongoose
-  .connect("mongodb://localhost/server", {
+  .connect(process.env.MONGODB_URI || "mongodb://localhost/server", {
     useNewUrlParser: true,
     useUnifiedTopology: true
   })
