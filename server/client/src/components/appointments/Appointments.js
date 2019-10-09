@@ -9,7 +9,6 @@ import {
   CardContent,
   Menu,
   MenuItem,
-  ClickAwayListener,
   Dialog,
   DialogContent,
   DialogContentText,
@@ -98,7 +97,6 @@ export default class Appointments extends Component {
         </Link>
         <div>
           {this.state.appointments.map(appointment => {
-            // console.log(appointment.type, appointment._id);
             return (
               <Card key={appointment._id}>
                 <CardContent>
@@ -106,7 +104,6 @@ export default class Appointments extends Component {
                     <Typography>{appointment.type}</Typography>
                     <Typography>{appointment.date}</Typography>
                   </div>
-                  {/* <ClickAwayListener onClickAway={this.handleClose}> */}
                   <div>
                     <IconButton
                       // className={classes.menuButton}
@@ -147,7 +144,6 @@ export default class Appointments extends Component {
                       </MenuItem>
                     </Menu>
                   </div>
-                  {/* </ClickAwayListener> */}
                 </CardContent>
               </Card>
             );

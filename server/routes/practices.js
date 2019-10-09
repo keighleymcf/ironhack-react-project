@@ -19,15 +19,18 @@ router.get("/saved", (req, res) => {
   const user = req.user._id.toString();
   let ownerArray = [];
   let savedPractices = [];
-  Practice.find()
+  Practice.find({ owner: { $all: [req.user._id] } })
+
     .then(response => {
-      savedPractices = response.data.filter(practice => {
+      /*  savedPractices = response.data.filter(practice => {
         ownerArray = practice.owner;
         return ownerArray.filter(owner => {
           return owner.toString() === user;
         });
       });
-      res.json(savedPractices);
+      res.json(savedPractices); */
+
+      res.json(response);
     })
     .catch(err => {
       res.json(err);
@@ -134,30 +137,15 @@ router.put("/:id", (req, res) => {
 });
 
 /* remove practice from user's saved list */
-router.put("removeOwner/:id", (req, res) => {
-  const ownerToRemove = req.user._id.toString();
-  const ownerArray = [];
-  const updatedOwners = [];
-  Practice.findById(req.params.id)
-    .then(response => {
-      return (ownerArray = response.owner);
-    })
-    .then(() => {
-      updatedOwners = ownerArray.filter(ownerId => {
-        return ownerId.toString() !== ownerToRemove;
-      });
-    })
-    .then(() => {
-      Practice.findByIdAndUpdate(
-        req.params.id,
-        {
-          owner: updatedOwners
-        },
-        // { new: true } ensures that we are getting the updated document in the .then callback
-        { new: true }
-      );
-    })
+router.put("/removeOwner/:id", (req, res) => {
+  console.log(req.user._id);
+  Practice.findByIdAndUpdate(
+    req.params.id,
+    { $pull: { owner: req.user._id } },
+    { new: true }
+  )
     .then(updatedPractice => {
+      console.log(updatedPractice);
       return res.json({
         message: `${updatedPractice.name} has been removed from your saved list`
       });
@@ -166,6 +154,29 @@ router.put("removeOwner/:id", (req, res) => {
       console.log(err);
       res.json(err);
     });
+
+  // const ownerToRemove = req.user._id.toString();
+  // const ownerArray = [];
+  // const updatedOwners = [];
+  // Practice.findById(req.params.id)
+  //   .then(response => {
+  //     return (ownerArray = response.owner);
+  //   })
+  //   .then(() => {
+  //     updatedOwners = ownerArray.filter(ownerId => {
+  //       return ownerId.toString() !== ownerToRemove;
+  //     });
+  //   })
+  //   .then(() => {
+  //     Practice.findByIdAndUpdate(
+  //       req.params.id,
+  //       {
+  //         owner: updatedOwners
+  //       },
+  //       // { new: true } ensures that we are getting the updated document in the .then callback
+  //       { new: true }
+  //     );
+  //   })
 });
 
 /* delete practice */

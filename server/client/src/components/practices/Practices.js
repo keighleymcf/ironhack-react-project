@@ -41,6 +41,7 @@ export default class Practices extends Component {
   };
 
   showRemoveDialog = practice => {
+    console.log("showRemoveDialog")
     this.setState({
       showDialog: true,
       practiceToRemove: practice
@@ -56,6 +57,7 @@ export default class Practices extends Component {
 
   handleRemove = () => {
     this.handleClose();
+    console.log("hanlde remove");
     axios
       .put(`/practices/removeOwner/${this.state.practiceToRemove}`)
       .then(() => {
@@ -65,7 +67,7 @@ export default class Practices extends Component {
   };
 
   getPractices = () => {
-    axios.get("/saved").then(response => {
+    axios.get("/practices/saved").then(response => {
       let practices = response.data;
       this.setState({ practices });
     });
@@ -145,8 +147,8 @@ export default class Practices extends Component {
               Are you sure you want to remove this practice from your list?
             </DialogContentText>
             <DialogActions>
-              <Button onClick={this.hideDeleteDialog}>Cancel</Button>
-              <Button onClick={this.handleDelete}>Delete</Button>
+              <Button onClick={this.hideRemoveDialog}>Cancel</Button>
+              <Button onClick={this.handleRemove}>Remove</Button>
             </DialogActions>
           </DialogContent>
         </Dialog>
