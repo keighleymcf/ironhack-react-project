@@ -20,10 +20,10 @@ router.get("/:id", (req, res) => {
     .then(appointment => {
       if (!appointment) {
         res.status(404).json(appointment);
-          } else if (appointment.owner !== req.user._id) {
-            res
-              .status(300)
-              .json({ message: "You do not have access to this appointment" });
+      } else if (appointment.owner.toString() !== req.user._id.toString()) {
+        res
+          .status(300)
+          .json({ message: "You do not have access to this appointment" });
       } else {
         res.json(appointment);
       }
@@ -36,13 +36,13 @@ router.get("/:id", (req, res) => {
 /* create new appt */
 router.post("/", (req, res) => {
   const { type, date } = req.body;
-  const  owner  = req.user._id;
-//   const { practice } = req.practice._id;
-//   const { series } = req.series._id;
+  const owner = req.user._id;
+  //   const { practice } = req.practice._id;
+  //   const { series } = req.series._id;
   return Appointment.create({
     type,
     date,
-    owner,
+    owner
     // practice,
     // series
   })
@@ -65,7 +65,7 @@ router.put("/:id", (req, res) => {
     .then(appointment => {
       if (!appointment) {
         res.status(404).json(appointment);
-      } else if (appointment.owner !== req.user._id) {
+      } else if (appointment.owner.toString() !== req.user._id.toString()) {
         res
           .status(300)
           .json({ message: "You do not have access to this appointment" });
@@ -94,7 +94,10 @@ router.delete("/:id", (req, res) => {
     .then(appointment => {
       if (!appointment) {
         res.status(404).json(appointment);
-      } else if (appointment.owner !== req.user._id) {
+      } else if (appointment.owner.toString() !== req.user._id.toString()) {
+        console.log(appointment.owner, req.user._id);
+        console.log(typeof appointment.owner, typeof req.user._id);
+
         res
           .status(300)
           .json({ message: "You do not have access to this appointment" });

@@ -5,13 +5,30 @@ import { Button, TextField, Typography } from "@material-ui/core";
 import { MuiPickersUtilsProvider, DateTimePicker } from "@material-ui/pickers";
 import DateFnsUtils from "@date-io/date-fns";
 
-export default class AppointmentSubform extends Component {
+export default class EditAppointment extends Component {
   static contextType = AuthContext;
 
   state = {
     type: "",
-    date: ""
+    date: "",
+    _id: ""
   };
+
+  componentDidMount() {
+    axios.get(`/appointments/${this.props.match.params.id}`).then(response => {
+      let appointment = response.data;
+      let date = appointment.date;
+      if (typeof date === "string") {
+        date = new Date(appointment.date);
+      }
+      const updatedAppointment = { ...appointment, date: date };
+      this.setState({
+        type: updatedAppointment.type,
+        date: updatedAppointment.date,
+        _id: updatedAppointment._id
+      });
+    });
+  }
 
   handleChange = event => {
     console.log(event.target);
@@ -26,9 +43,10 @@ export default class AppointmentSubform extends Component {
   };
 
   handleSubmit = () => {
-    const { date, type } = this.state;
-    axios.post("/appointments", { type, date });
-    this.props.history.push("/appointments");
+    const { date, type, _id } = this.state;
+    axios.put(`/appointments/${_id}`, { type, date }).then(() => {
+      this.props.history.push("/appointments");
+    });
   };
 
   // formatDate = date => {
@@ -37,8 +55,7 @@ export default class AppointmentSubform extends Component {
   render() {
     return (
       <div>
-                <Typography>Add new appointment</Typography>
-
+        <Typography>Edit appointment</Typography>
         <TextField
           id="outlined-type-input"
           label="Type of appointment"

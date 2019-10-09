@@ -2,43 +2,168 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import AuthContext from "../../contexts/AuthContext";
 import axios from "axios";
-import { Typography, Button, Card, CardContent } from "@material-ui/core";
+import {
+  Typography,
+  Button,
+  Card,
+  CardContent,
+  Menu,
+  MenuItem,
+  ClickAwayListener,
+  Dialog,
+  DialogContent,
+  DialogContentText,
+  DialogActions,
+  IconButton
+} from "@material-ui/core";
+import { format } from "date-fns";
+import MoreVertIcon from "@material-ui/icons/MoreVert";
 
 export default class Appointments extends Component {
   static contextType = AuthContext;
 
   state = {
-    appointments: []
+    appointments: [],
+    showDialog: false,
+    anchorEl: null,
+    appointmentToDelete: ""
+  };
+
+  formatDate = date => {
+    return format(date, "EEEE d MMM Y | K:mm");
+  };
+
+  handleMenuClick = event => {
+    this.setState({
+      anchorEl: event.currentTarget
+    });
+  };
+
+  handleClose = () => {
+    this.setState({
+      anchorEl: null
+    });
+  };
+
+  showDeleteDialog = appointment => {
+    console.log(appointment);
+    this.setState({
+      showDialog: true,
+      appointmentToDelete: appointment
+    });
+  };
+
+  hideDeleteDialog = () => {
+    this.setState({
+      showDialog: false,
+      appointmentToDelete: ""
+    });
+  };
+
+  handleDelete = () => {
+    this.handleClose();
+    axios.delete(`/appointments/${this.state.appointmentToDelete}`).then(() => {
+      this.hideDeleteDialog();
+      this.getAppointments();
+    });
+  };
+
+  getAppointments = () => {
+    axios.get("/appointments").then(response => {
+      let appointments = response.data.map(appointment => {
+        let date = appointment.date;
+        if (typeof date === "string") {
+          date = new Date(appointment.date);
+        }
+        const formattedDate = this.formatDate(date);
+        return { ...appointment, date: formattedDate };
+      });
+      this.setState({ appointments: appointments });
+    });
   };
 
   componentDidMount() {
-    axios.get("/appointments").then(response => {
-      this.setState({ appointments: response.data });
-      console.log(response.data);
-    });
+    this.getAppointments();
   }
 
   render() {
+    console.log(this.state);
     return (
       <div>
         <div>
           <h1>My Appointments</h1>
         </div>
-        <Link to="/appointment/new">
-          <Button>make new appt</Button>
+        <Link to="/appointments/new">
+          <Button>Make new appointment</Button>
         </Link>
         <div>
-          {[...this.state.appointments].map(appointment => {
+          {this.state.appointments.map(appointment => {
+            // console.log(appointment.type, appointment._id);
             return (
-              <Card>
+              <Card key={appointment._id}>
                 <CardContent>
-                  <Typography>{appointment.type}</Typography>
-                  <Typography>{appointment.date}</Typography>
+                  <div>
+                    <Typography>{appointment.type}</Typography>
+                    <Typography>{appointment.date}</Typography>
+                  </div>
+                  {/* <ClickAwayListener onClickAway={this.handleClose}> */}
+                  <div>
+                    <IconButton
+                      // className={classes.menuButton}
+                      color="inherit"
+                      aria-label="menu"
+                      id={`menu-anchor-${appointment._id}`}
+                      onClick={this.handleMenuClick}
+                    >
+                      <MoreVertIcon />
+                    </IconButton>
+                    <Menu
+                      id={`menu-${appointment._id}`}
+                      anchorEl={this.state.anchorEl}
+                      keepMounted
+                      open={Boolean(
+                        this.state.anchorEl &&
+                          this.state.anchorEl.id.includes(appointment._id)
+                      )}
+                      onClose={this.handleClose}
+                    >
+                      <MenuItem>
+                        <Link to={`/appointments/${appointment._id}`}>
+                          View appointment details for {appointment.type}
+                        </Link>
+                      </MenuItem>
+                      <MenuItem>
+                        <Link to={`/appointments/edit/${appointment._id}`}>
+                          Edit appointment
+                        </Link>
+                      </MenuItem>
+                      <MenuItem
+                        onClick={() => {
+                          console.log(appointment._id);
+                          this.showDeleteDialog(appointment._id);
+                        }}
+                      >
+                        Delete appointment
+                      </MenuItem>
+                    </Menu>
+                  </div>
+                  {/* </ClickAwayListener> */}
                 </CardContent>
               </Card>
             );
           })}
         </div>
+        <Dialog open={this.state.showDialog}>
+          <DialogContent>
+            <DialogContentText>
+              Are you sure you want to delete this appointment?
+            </DialogContentText>
+            <DialogActions>
+              <Button onClick={this.hideDeleteDialog}>Cancel</Button>
+              <Button onClick={this.handleDelete}>Delete</Button>
+            </DialogActions>
+          </DialogContent>
+        </Dialog>
       </div>
     );
   }

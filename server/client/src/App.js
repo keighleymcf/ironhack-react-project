@@ -12,6 +12,8 @@ import Appointments from "./components/appointments/Appointments";
 import Practices from "./components/practices/Practices";
 import Series from "./components/series/Series";
 import NewAppointment from "./components/forms/newAppointment/NewAppointment";
+import Appointment from "./components/appointments/appointment/Appointment";
+import EditAppointment from "./components/forms/editAppointment/EditAppointment";
 import { AuthProvider } from "./contexts/AuthContext";
 
 //IF USING MATERIAL UI STYLING make sure to export component as export default WithStyles(styles)(App)
@@ -29,10 +31,10 @@ export default class App extends Component {
     return (
       <div className="App">
         <AuthProvider value={{ user: this.state.user, setUser: this.setUser }}>
-          <Route exact path="/" component={Home} />
-          <>
-            <Navbar />
-            <Switch>
+          <Switch>
+            <Route exact path="/" component={Home} />
+            <>
+              <Navbar />
               {/* Signup and Login only available if no user is logged in */}
               <Route
                 exact
@@ -69,20 +71,28 @@ export default class App extends Component {
               />
               <Route
                 exact
-                path="/appointment/new"
+                path="/appointments/new"
                 render={props => {
                   if (this.state.user) return <NewAppointment {...props} />;
                   else return <Redirect to="/" />;
                 }}
               />
-              {/* <Route
+              <Route
                 exact
-                path="/appointment/:id"
+                path="/appointments/:id"
                 render={props => {
                   if (this.state.user) return <Appointment {...props} />;
                   else return <Redirect to="/" />;
                 }}
-              /> */}
+              />
+              <Route
+                exact
+                path="/appointments/edit/:id"
+                render={props => {
+                  if (this.state.user) return <EditAppointment {...props} />;
+                  else return <Redirect to="/" />;
+                }}
+              />
               <Route
                 exact
                 path="/practices"
@@ -91,6 +101,30 @@ export default class App extends Component {
                   else return <Redirect to="/" />;
                 }}
               />
+              {/* <Route
+                exact
+                path="/practices/new"
+                render={props => {
+                  if (this.state.user) return <NewPractice {...props} />;
+                  else return <Redirect to="/" />;
+                }}
+              />
+              <Route
+                exact
+                path="/practices/:id"
+                render={props => {
+                  if (this.state.user) return <Practice {...props} />;
+                  else return <Redirect to="/" />;
+                }}
+              />
+              <Route
+                exact
+                path="/practices/edit/:id"
+                render={props => {
+                  if (this.state.user) return <EditPractice {...props} />;
+                  else return <Redirect to="/" />;
+                }}
+              /> */}
               <Route
                 exact
                 path="/series"
@@ -99,8 +133,8 @@ export default class App extends Component {
                   else return <Redirect to="/" />;
                 }}
               />
-            </Switch>
-          </>
+            </>
+          </Switch>
         </AuthProvider>
       </div>
     );
