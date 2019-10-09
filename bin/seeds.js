@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const faker = require("Faker");
+const faker = require("faker");
 const bcrypt = require("bcrypt");
 const User = require("../models/User");
 const Appointment = require("../models/Appointment");
