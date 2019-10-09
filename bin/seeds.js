@@ -8,7 +8,9 @@ const Series = require("../models/Series");
 
 const bcryptSalt = 10;
 mongoose
-  .connect("mongodb://localhost/server", { useNewUrlParser: true })
+  .connect("mongodb://localhost/server" || process.env.MONGODB_URI, {
+    useNewUrlParser: true
+  })
   .then(x => {
     console.log(
       `Connected to Mongo! Database name: "${x.connections[0].name}"`
