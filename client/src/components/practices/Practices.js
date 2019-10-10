@@ -57,7 +57,6 @@ export default class Practices extends Component {
 
   handleRemove = () => {
     this.handleClose();
-    console.log("hanlde remove");
     axios
       .put(`/practices/removeOwner/${this.state.practiceToRemove}`)
       .then(() => {

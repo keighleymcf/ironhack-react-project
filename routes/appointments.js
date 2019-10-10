@@ -35,15 +35,16 @@ router.get("/:id", (req, res) => {
 
 /* create new appt */
 router.post("/", (req, res) => {
-  const { type, date } = req.body;
+  const { type, date, selectedPracticeId } = req.body;
   const owner = req.user._id;
   //   const { practice } = req.practice._id;
   //   const { series } = req.series._id;
   return Appointment.create({
     type,
     date,
-    owner
-    // practice,
+    owner,
+    // TEST THIS !!!!!!
+    practice: mongoose.Types.ObjectId(selectedPracticeId)
     // series
   })
     .then(dbAppointment => {

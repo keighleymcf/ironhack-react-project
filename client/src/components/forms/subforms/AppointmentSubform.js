@@ -25,10 +25,9 @@ export default class AppointmentSubform extends Component {
     this.setState({ date });
   };
 
-  handleSubmit = () => {
+  handleAppointmentSave = () => {
     const { date, type } = this.state;
-    axios.post("/appointments", { type, date });
-    this.props.history.push("/appointments");
+    this.props.formContext.setAppointment(type, date)
   };
 
   // formatDate = date => {
@@ -61,7 +60,7 @@ export default class AppointmentSubform extends Component {
             onChange={this.handleDateChange}
           />
         </MuiPickersUtilsProvider>
-        <Button onClick={this.handleSubmit}>Save</Button>
+        <Button onClick={this.handleAppointmentSave}>Save</Button>
       </div>
     );
   }

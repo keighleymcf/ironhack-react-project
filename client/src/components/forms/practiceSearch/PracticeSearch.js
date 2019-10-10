@@ -23,7 +23,7 @@ export default class PracticeSearch extends Component {
 
   state = {
     practices: [],
-    anchorEl: false,
+    anchorEl: null,
     showRemoveDialog: false,
     showAddDialog: false,
     practiceToRemove: "",
@@ -116,6 +116,13 @@ export default class PracticeSearch extends Component {
     this.getPractices();
   };
 
+  checkOwnerList = practice => {
+    const ownerIds = practice.owner.map(id => {
+      return id.toString();
+    });
+    return ownerIds.includes(this.context.user._id.toString()) ? true : false;
+  };
+
   componentDidMount() {
     console.log("COM DID MOUNT");
     this.getPractices();
@@ -155,6 +162,9 @@ export default class PracticeSearch extends Component {
                   <div>
                     <Typography>{practice.name}</Typography>
                     <Typography>{practice.type}</Typography>
+                    {this.checkOwnerList(practice) && (
+                      <Typography>Saved in My Practices"</Typography>
+                    )}
                   </div>
                   <div>
                     <IconButton
@@ -185,24 +195,27 @@ export default class PracticeSearch extends Component {
                         <Link to={`/practices/edit/${practice._id}`}>
                           Edit practice
                         </Link>
-                      </MenuItem>
+                      </MenuItem>{" "}
                       ​
-                      <MenuItem
-                        onClick={() => {
-                          console.log(practice._id);
-                          this.showRemoveDialog(practice._id);
-                        }}
-                      >
-                        Remove practice from my list
-                      </MenuItem>
-                      <MenuItem
-                        onClick={() => {
-                          console.log(practice._id);
-                          this.showAddDialog(practice._id);
-                        }}
-                      >
-                        Add practice to my list
-                      </MenuItem>
+                      {this.checkOwnerList(practice) ? (
+                        <MenuItem
+                          onClick={() => {
+                            console.log(practice._id);
+                            this.showRemoveDialog(practice._id);
+                          }}
+                        >
+                          Remove practice from my list
+                        </MenuItem>
+                      ) : (
+                        <MenuItem
+                          onClick={() => {
+                            console.log(practice._id);
+                            this.showAddDialog(practice._id);
+                          }}
+                        >
+                          Add practice to my list
+                        </MenuItem>
+                      )}
                     </Menu>
                   </div>
                 </CardContent>

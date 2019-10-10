@@ -15,6 +15,10 @@ import NewAppointment from "./components/forms/newAppointment/NewAppointment";
 import Appointment from "./components/appointments/appointment/Appointment";
 import EditAppointment from "./components/forms/editAppointment/EditAppointment";
 import PracticeSearch from "./components/forms/practiceSearch/PracticeSearch";
+import Practice from "./components/practices/practice/Practice";
+import NewPractice from "./components/forms/newPractice/NewPractice";
+import EditPractice from "./components/forms/editPractice/EditPractice";
+
 import { AuthProvider } from "./contexts/AuthContext";
 
 //IF USING MATERIAL UI STYLING make sure to export component as export default WithStyles(styles)(App)
@@ -36,6 +40,7 @@ export default class App extends Component {
             <Route exact path="/" component={Home} />
             <>
               <Navbar />
+              <Switch>
               {/* Signup and Login only available if no user is logged in */}
               <Route
                 exact
@@ -110,7 +115,7 @@ export default class App extends Component {
                   else return <Redirect to="/" />;
                 }}
               />
-              {/* <Route
+              <Route
                 exact
                 path="/practices/new"
                 render={props => {
@@ -133,7 +138,7 @@ export default class App extends Component {
                   if (this.state.user) return <EditPractice {...props} />;
                   else return <Redirect to="/" />;
                 }}
-              /> */}
+              />
               <Route
                 exact
                 path="/series"
@@ -142,6 +147,7 @@ export default class App extends Component {
                   else return <Redirect to="/" />;
                 }}
               />
+              </Switch>
             </>
           </Switch>
         </AuthProvider>

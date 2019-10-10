@@ -72,12 +72,12 @@ router.post("/", (req, res) => {
     street,
     city,
     zip,
-    phone,
-    monday,
-    tuesday,
-    wednesday,
-    thursday,
-    friday
+    phone
+    // monday,
+    // tuesday,
+    // wednesday,
+    // thursday,
+    // friday
   } = req.body;
   const owner = req.user._id;
   return Practice.create({
@@ -85,8 +85,8 @@ router.post("/", (req, res) => {
     name,
     type,
     address: { street, city, zip },
-    phone,
-    hours: { monday, tuesday, wednesday, thursday, friday }
+    phone
+    // hours: { monday, tuesday, wednesday, thursday, friday }
   })
     .then(dbPractice => {
       res.json({ dbPractice });
@@ -104,12 +104,12 @@ router.put("/:id", (req, res) => {
     street,
     city,
     zip,
-    phone,
-    monday,
-    tuesday,
-    wednesday,
-    thursday,
-    friday
+    phone
+    // monday,
+    // tuesday,
+    // wednesday,
+    // thursday,
+    // friday
   } = req.body;
   //   const { owner } = req.user._id;
   //   const { practice } = req.practice._id;
@@ -122,8 +122,8 @@ router.put("/:id", (req, res) => {
       name,
       type,
       address: { street, city, zip },
-      phone,
-      hours: { monday, tuesday, wednesday, thursday, friday }
+      phone
+      // hours: { monday, tuesday, wednesday, thursday, friday }
     },
     // { new: true } ensures that we are getting the updated document in the .then callback
     { new: true }

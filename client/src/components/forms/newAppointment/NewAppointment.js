@@ -12,15 +12,31 @@ import {
 import PracticeSubform from "../subforms/PracticeSubform";
 import SeriesSubform from "../subforms/SeriesSubform";
 import AppointmentSubform from "../subforms/AppointmentSubform";
-import AuthContext from "../../../contexts/AuthContext";
+import AuthContext, { AuthConsumer } from "../../../contexts/AuthContext";
+import FormContext, { FormConsumer, FormProvider } from "../../../contexts/FormContext";
 import NewAppointmentStyles from "./NewAppointment.styles";
+import axios from "axios";
 
 class NewAppointment extends Component {
-  static contextType = AuthContext;
-
   state = {
-    user: this.context.user,
-    activeStep: 0
+    activeStep: 0,
+    selectedPracticeId: "",
+    type: "",
+    date: ""
+  };
+
+  setPractice = id => {
+    this.setState({
+      selectedPracticeId: id
+    });
+    console.log("selected id: ", this.state.selectedPracticeId)
+  };
+
+  setAppointment = (type, date) => {
+    this.setState({
+      type,
+      date
+    });
   };
 
   handleChange = event => {
@@ -32,35 +48,24 @@ class NewAppointment extends Component {
 
   handleSubmit = event => {
     event.preventDefault();
-    //const { username, password } = this.state;
-    //   login(username, password).then(data => {
-    //     if (data.message) {
-    //       this.setState({
-    //         message: data.message,
-    //         username: "",
-    //         password: ""
-    //       });
-    //     } else {
-    //       // successfully signed up
-    //       // update the state for the parent component
-    //       this.context.setUser(data);
-    //       this.props.history.push("/dashboard");
-    //     }
-    //   });
+    const { type, date, selectedPracticeId } = this.state;
+    axios.post("/appointments", { type, date, selectedPracticeId }).then(() => {
+      this.props.history.push("/appointments");
+    });
   };
 
   //   Stepper functions
   getSteps = () => {
     return ["Location", "Series", "Appointment details"];
   };
-  getStepContent = step => {
+  getStepContent =( step, FormContext )=> {
     switch (step) {
       case 0:
-        return <PracticeSubform />;
+        return <PracticeSubform formContext={FormContext}/>;
       case 1:
         return <SeriesSubform />;
       case 2:
-        return <AppointmentSubform />;
+        return <AppointmentSubform formContext={FormContext}/>;
       default:
         return "Sorry, there was an error in the form";
     }
@@ -93,46 +98,74 @@ class NewAppointment extends Component {
 
     return (
       <div>
-        <Typography variant="h1">Add an appointment</Typography>
-        <Stepper activeStep={this.state.activeStep} orientation="vertical">
-          {steps.map((label, index) => {
+        <FormProvider value ={{state:this.state, setPractice: this.setPractice, setAppointment: this.setAppointment}}>
+        <AuthConsumer>
+          {userContext => {
             return (
-              <Step key={label}>
-                <StepLabel>{label}</StepLabel>
-                <StepContent key={label}>
-                  {this.getStepContent(index)}
-                  <div className={classes.actionsContainer}>
-                    <div>
-                      <Button
-                        disabled={this.state.activeStep === 0}
-                        onClick={this.handleBack}
-                        className={classes.button}
-                      >
-                        Back
-                      </Button>
-                      <Button
-                        variant="contained"
-                        color="primary"
-                        onClick={this.handleNext}
-                        className={classes.button}
-                      >
-                        {this.state.activeStep === steps.length - 1
-                          ? "Finish"
-                          : "Next"}
-                      </Button>
-                    </div>
-                  </div>
-                </StepContent>
-              </Step>
+              <FormConsumer>
+                {formContext => (
+                  <>
+                    <Typography variant="h1">Add an appointment</Typography>
+                    <Stepper
+                      activeStep={this.state.activeStep}
+                      orientation="vertical"
+                    >
+                      {console.log(userContext, formContext)}
+                      {steps.map((label, index) => {
+                        return (
+                          <Step key={label}>
+                            <StepLabel>{label}</StepLabel>
+                            <StepContent key={label}>
+                              {this.getStepContent(index, formContext)}
+                              <div className={classes.actionsContainer}>
+                                <div>
+                                  <Button
+                                    disabled={this.state.activeStep === 0}
+                                    onClick={this.handleBack}
+                                    className={classes.button}
+                                  >
+                                    Back
+                                  </Button>
+                                  {this.state.activeStep ===
+                                  steps.length - 1 ? (
+                                    <Button
+                                      variant="contained"
+                                      color="primary"
+                                      onClick={this.handleSubmit}
+                                      className={classes.button}
+                                    >
+                                      "Finish"
+                                    </Button>
+                                  ) : (
+                                    <Button
+                                      variant="contained"
+                                      color="primary"
+                                      onClick={this.handleNext}
+                                      className={classes.button}
+                                    >
+                                      "Next"
+                                    </Button>
+                                  )}
+                                </div>
+                              </div>
+                            </StepContent>
+                          </Step>
+                        );
+                      })}
+                      {/* up end of map, below end of return and render */}
+                    </Stepper>
+                    {this.state.activeStep === steps.length && (
+                      <Link to="/appointments">
+                        <Button>See all my appointments</Button>
+                      </Link>
+                    )}
+                  </>
+                )}
+              </FormConsumer>
             );
-          })}
-          {/* up end of map, below end of return and render */}
-        </Stepper>
-        {this.state.activeStep === steps.length && (
-          <Link to="/appointments">
-            <Button>See all my appointments</Button>
-          </Link>
-        )}
+          }}
+        </AuthConsumer>
+        </FormProvider>
       </div>
     );
   }
