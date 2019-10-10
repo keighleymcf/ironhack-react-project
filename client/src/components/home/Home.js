@@ -49,8 +49,10 @@ class Home extends React.Component {
     return (
       <div>
         <div className="landing">
+          <div>
           <h1 className="title">Never forget another doctor's appointment</h1>
           <this.Buttons />
+          </div>
         </div>
         <div className="tile-containers">
           <Card>

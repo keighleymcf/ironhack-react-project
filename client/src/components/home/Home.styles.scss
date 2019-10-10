@@ -1,13 +1,20 @@
 .landing {
-  text-align: left;
   width: 100vw;
   height: 480px;
   background-image: url("https://images.unsplash.com/photo-1532938911079-1b06ac7ceec7?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1489&q=80");
   background-size: cover;
-  // background-position: center left;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
+  // background-position: center left;
+
+  div: {
+    margin: 15px;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+  }
 }
 
 .title {
@@ -27,6 +34,7 @@
 
 h3 {
   color: white;
+  transform: skew(20deg);
 }
 
 .button-container {

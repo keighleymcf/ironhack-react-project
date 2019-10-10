@@ -1,0 +1,19 @@
+.appointmentCard {
+  display: flex;
+  justify-content: space-between;
+}
+
+.appointments {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  flex-direction: column;
+}
+
+.apptH4 {
+  color: #598e89;
+}
+
+.dlt {
+  color: tomato
+}

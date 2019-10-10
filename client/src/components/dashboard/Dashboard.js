@@ -1,44 +1,51 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import { DashTile, DashH2 } from "./Dashboard.styles";
+import "./Dashboard.styles.scss";
+import { Card, CardContent } from "@material-ui/core";
 import AuthContext from "../../contexts/AuthContext";
 
 export default class Dashboard extends Component {
   static contextType = AuthContext;
 
-  state = {
-    user: this.context.user
-  };
+  // state = {
+  //   user: this.context.user
+  // };
 
   render() {
     return (
       <div>
         <Link to="/appointments">
-          <DashTile>
-            <img
-              src="/michael-browning-D0ov97Td-xM-unsplash.jpg"
-              alt="My Appointments"
-            />
-            <DashH2>My Appointments</DashH2>
-          </DashTile>
+          <Card>
+            <CardContent>
+              <img
+                src="/michael-browning-D0ov97Td-xM-unsplash.jpg"
+                alt="My Appointments"
+              />
+              <h2>My Appointments</h2>
+            </CardContent>
+          </Card>
         </Link>
         <Link to="/series">
-          <DashTile>
-            <img
-              src="/ibrahim-boran-pV5arhEZHiA-unsplash.jpg"
-              alt="My Series"
-            />
-            <DashH2>My Appointment Series</DashH2>
-          </DashTile>
+          <Card>
+            <CardContent>
+              <img
+                src="/ibrahim-boran-pV5arhEZHiA-unsplash.jpg"
+                alt="My Series"
+              />
+              <h2>My Appointment Series</h2>
+            </CardContent>
+          </Card>
         </Link>
         <Link to="/practices">
-          <DashTile>
-            <img
-              src="/luis-melendez-Pd4lRfKo16U-unsplash.jpg"
-              alt="My Doctors"
-            />
-            <DashH2>My Doctors</DashH2>
-          </DashTile>
+          <Card>
+            <CardContent>
+              <img
+                src="/luis-melendez-Pd4lRfKo16U-unsplash.jpg"
+                alt="My Doctors"
+              />
+              <h2>My Doctors</h2>
+            </CardContent>
+          </Card>
         </Link>
       </div>
     );

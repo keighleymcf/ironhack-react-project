@@ -62,8 +62,7 @@ export default class Practice extends Component {
   };
 
   handleAdd = () => {
-    axios.put(`/practices/addOwner/${this.state.practiceToRemove}`)
-    .then(() => {
+    axios.put(`/practices/addOwner/${this.state.practiceToRemove}`).then(() => {
       this.hideAddDialog();
       this.getPractice();
     });
@@ -71,7 +70,7 @@ export default class Practice extends Component {
 
   getPractice = () => {
     axios.get(`/practices/${this.props.match.params.id}`).then(response => {
-      console.log(response.data)
+      console.log(response.data);
       let practice = response.data;
       this.setState({
         practice
@@ -81,18 +80,19 @@ export default class Practice extends Component {
 
   checkOwnerList = practice => {
     if (practice) {
-    const ownerIds = practice.owner.map(id => {
-      return id.toString();
-    });
-    return ownerIds.includes(this.context.user._id.toString()) ? true : false;
-  };}
+      const ownerIds = practice.owner.map(id => {
+        return id.toString();
+      });
+      return ownerIds.includes(this.context.user._id.toString()) ? true : false;
+    }
+  };
 
   componentDidMount() {
     this.getPractice();
   }
 
   render() {
-    console.log(this.state.practice)
+    console.log(this.state.practice);
     return (
       <div>
         <div>
@@ -100,41 +100,48 @@ export default class Practice extends Component {
         </div>
         <div>
           {this.state.practice !== "" && (
-          <Card key={this.state.practice._id}>
-            <CardContent>
-              <div>
-                <Typography>{this.state.practice.name}</Typography>
-                <Typography>{this.state.practice.type}</Typography>
-                {this.checkOwnerList(this.state.practice) && (
-                  <Typography>Saved in My Practices</Typography>
-                )}
-              </div>
-              <div>
-                <Link to={`/practices/edit/${this.state.practice._id}`}>
-                  <Button>Edit practice</Button>
-                </Link>
-                {this.checkOwnerList(this.state.practice) ? (
-                  <Button
-                    onClick={() => {
-                      console.log(this.state.practice._id);
-                      this.showRemoveDialog(this.state.practice._id);
-                    }}
-                  >
-                    Remove practice from my list
-                  </Button>
-                ) : (
-                  <Button
-                    onClick={() => {
-                      console.log(this.state.practice._id);
-                      this.showAddDialog(this.state.practice._id);
-                    }}
-                  >
-                    Add practice to my list
-                  </Button>
-                )}
-              </div>
-            </CardContent>
-          </Card>) }
+            <Card key={this.state.practice._id}>
+              <CardContent>
+                <div>
+                  <h4 className="apptH4">{this.state.practice.name}</h4>
+                  <h4 className="apptLow">{this.state.practice.type}</h4>
+                  
+                  <p>{this.state.practice.address.street}</p>
+                  <p>
+                    {this.state.practice.address.city}{" "}
+                    {this.state.practice.address.zip}
+                  </p>
+                  {this.checkOwnerList(this.state.practice) && (
+                    <h5>Saved in My Practices</h5>
+                  )}
+                </div>
+                <div>
+                  <Link to={`/practices/edit/${this.state.practice._id}`}>
+                    <Button className="btn">Edit practice</Button>
+                  </Link>
+                  {this.checkOwnerList(this.state.practice) ? (
+                    <Button
+                      onClick={() => {
+                        console.log(this.state.practice._id);
+                        this.showRemoveDialog(this.state.practice._id);
+                      }}
+                    >
+                      Remove practice from my list
+                    </Button>
+                  ) : (
+                    <Button
+                      onClick={() => {
+                        console.log(this.state.practice._id);
+                        this.showAddDialog(this.state.practice._id);
+                      }}
+                    >
+                      Add practice to my list
+                    </Button>
+                  )}
+                </div>
+              </CardContent>
+            </Card>
+          )}
         </div>
         <Dialog open={this.state.showRemoveDialog}>
           <DialogContent>

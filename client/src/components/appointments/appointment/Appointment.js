@@ -49,7 +49,6 @@ export default class Appointment extends Component {
   };
 
   componentDidMount() {
-    console.log("ghost axios in appointment");
     axios.get(`/appointments/${this.props.match.params.id}`).then(response => {
       let appointment = response.data;
       let date = appointment.date;
@@ -70,12 +69,14 @@ export default class Appointment extends Component {
       <div>
         <Card>
           <CardContent>
-            <Typography>{this.state.appointment.type}</Typography>
-            <Typography>{this.state.appointment.date}</Typography>
+            <h4 className="apptH4">{this.state.appointment.type}</h4>
+            <h4 className="apptLow">{this.state.appointment.date}</h4>
+            <div>
             <Link to={`/appointments/edit/${this.state.appointment._id}`}>
-              <Button>Edit appointment</Button>
+              <Button className="btn">Edit appointment</Button>
             </Link>
             <Button onClick={this.showDeleteDialog}>Delete appointment</Button>
+            </div>
           </CardContent>
         </Card>
         <Dialog open={this.state.showDialog}>

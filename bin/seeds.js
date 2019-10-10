@@ -21,7 +21,7 @@ mongoose
   });
 
 let userData = {
-  username: "alice",
+  username: "alice@superhealthy.com",
   password: bcrypt.hashSync("alice", bcrypt.genSaltSync(bcryptSalt))
 };
 

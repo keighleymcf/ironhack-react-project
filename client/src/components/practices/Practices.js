@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import "./Practices.styles.scss";
 import { Link } from "react-router-dom";
 import AuthContext from "../../contexts/AuthContext";
 import axios from "axios";
@@ -79,61 +80,63 @@ export default class Practices extends Component {
   render() {
     console.log(this.state);
     return (
-      <div>
-        <div>
-          <h1>My Practices</h1>
-        </div>
+      <div className="practices">
+        <h1>My Practices</h1>
         <Link to="/practices/search">
-          <Button>Search for a new practice</Button>
+          <Button className="btn">Search for a new practice</Button>
         </Link>
+
         <div>
           {this.state.practices.map(practice => {
             return (
               <Card key={practice._id}>
                 <CardContent>
-                  <div>
-                    <Typography>{practice.name}</Typography>
-                    <Typography>{practice.type}</Typography>
-                  </div>
-                  <div>
-                    <IconButton
-                      // className={classes.menuButton}
-                      color="inherit"
-                      aria-label="menu"
-                      id={`menu-anchor-${practice._id}`}
-                      onClick={this.handleMenuClick}
-                    >
-                      <MoreVertIcon />
-                    </IconButton>
-                    <Menu
-                      id={`menu-${practice._id}`}
-                      anchorEl={this.state.anchorEl}
-                      keepMounted
-                      open={Boolean(
-                        this.state.anchorEl &&
-                          this.state.anchorEl.id.includes(practice._id)
-                      )}
-                      onClose={this.handleClose}
-                    >
-                      <MenuItem>
-                        <Link to={`/practices/${practice._id}`}>
-                          View practice details
-                        </Link>
-                      </MenuItem>
-                      <MenuItem>
-                        <Link to={`/practices/edit/${practice._id}`}>
-                          Edit practice
-                        </Link>
-                      </MenuItem>
-                      <MenuItem
-                        onClick={() => {
-                          console.log(practice._id);
-                          this.showRemoveDialog(practice._id);
-                        }}
+                  <div className="practiceCard">
+                    <div>
+                      <h4 className="apptH4">{practice.name}</h4>
+                      <h4>{practice.type}</h4>
+                    </div>
+                    <div>
+                      <IconButton
+                        // className={classes.menuButton}
+                        color="inherit"
+                        aria-label="menu"
+                        id={`menu-anchor-${practice._id}`}
+                        onClick={this.handleMenuClick}
                       >
-                        Remove practice from my list
-                      </MenuItem>
-                    </Menu>
+                        <MoreVertIcon />
+                      </IconButton>
+                      <Menu
+                        id={`menu-${practice._id}`}
+                        anchorEl={this.state.anchorEl}
+                        keepMounted
+                        open={Boolean(
+                          this.state.anchorEl &&
+                            this.state.anchorEl.id.includes(practice._id)
+                        )}
+                        onClose={this.handleClose}
+                      >
+                        <MenuItem>
+                          <Link to={`/practices/${practice._id}`}>
+                            View practice details
+                          </Link>
+                        </MenuItem>
+                        <MenuItem>
+                          <Link to={`/practices/edit/${practice._id}`}>
+                            Edit practice
+                          </Link>
+                        </MenuItem>
+                        <MenuItem
+                          className="dlt"
+                          onClick={() => {
+                            console.log(practice._id);
+                            this.showRemoveDialog(practice._id);
+                          }}
+                        >
+                          Remove practice from my list
+                        </MenuItem>
+                      </Menu>
+                    </div>
                   </div>
                 </CardContent>
               </Card>

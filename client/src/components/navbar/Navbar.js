@@ -95,7 +95,7 @@ class Navbar extends Component {
               </MenuItem>
             </Menu>
             <Typography variant="h6" className={classes.title}>
-              Best app name
+              AppointerMed
             </Typography>
           </Toolbar>
         </ClickAwayListener>

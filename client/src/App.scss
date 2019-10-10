@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700,900&display=swap');
+@import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700,900&display=swap");
 /*gradient for buttons: linear-gradient(15deg, #13547a 0%, #80d0c7 100%);*/
 /*gradient for text: (15deg, #1c78ad 0%, #72bbb2 100%)*/
 * {
@@ -18,4 +18,54 @@
   // font-size: 10px;
   // color: black;
   font-family: "Source Sans Pro", sans-serif;
+}
+
+a {
+  color: #598e89;
+  text-decoration: none;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-weight: normal;
+}
+
+h5 {
+  font-weight: normal;
+  margin: 10px;
+  text-align: center;
+}
+
+.btn {
+  background: -webkit-linear-gradient(15deg, #1c78ad 0%, #72bbb2 100%);
+  margin: 10px;
+  color: white;
+}
+
+.apptH4 {
+  color: #598e89;
+}
+
+.apptLow {
+  margin-bottom: 10px;
+}
+
+.dlt {
+  color: tomato;
+}
+
+.appointmentCard,
+.practiceCard {
+  display: flex;
+  justify-content: space-between;
+}
+
+.appointments,
+.practices {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  flex-direction: column;
 }
