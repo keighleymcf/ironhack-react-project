@@ -45,7 +45,6 @@ export default class Appointments extends Component {
   };
 
   showDeleteDialog = appointment => {
-    console.log(appointment);
     this.setState({
       showDialog: true,
       appointmentToDelete: appointment
@@ -68,7 +67,10 @@ export default class Appointments extends Component {
   };
 
   getAppointments = () => {
+      console.log("ghost axios in appointmentS")
     axios.get("/appointments").then(response => {
+      console.log(response.data);
+
       let appointments = response.data.map(appointment => {
         let date = appointment.date;
         if (typeof date === "string") {

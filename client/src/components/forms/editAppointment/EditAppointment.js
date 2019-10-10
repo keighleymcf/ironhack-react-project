@@ -15,6 +15,7 @@ export default class EditAppointment extends Component {
   };
 
   componentDidMount() {
+        console.log("ghost axios in edit appointment")
     axios.get(`/appointments/${this.props.match.params.id}`).then(response => {
       let appointment = response.data;
       let date = appointment.date;

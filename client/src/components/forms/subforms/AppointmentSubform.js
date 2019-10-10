@@ -8,27 +8,26 @@ import DateFnsUtils from "@date-io/date-fns";
 export default class AppointmentSubform extends Component {
   static contextType = AuthContext;
 
-  state = {
-    type: "",
-    date: ""
-  };
+  // state = {
+  //   type: "",
+  //   date: new Date()
+  // };
 
-  handleChange = event => {
-    console.log(event.target);
-    const { name, value } = event.target;
-    this.setState({
-      [name]: value
-    });
-  };
+  // handleChange = event => {
+  //   console.log(event.target);
+  //   const { name, value } = event.target;
+  //   this.setState({
+  //     [name]: value
+  //   });
+  // };
 
   handleDateChange = date => {
-    this.setState({ date });
+    this.props.formContext.setAppointmentDate(date);
   };
 
-  handleAppointmentSave = () => {
-    const { date, type } = this.state;
-    this.props.formContext.setAppointment(type, date)
-  };
+  // handleAppointmentChange = type => {
+  //   this.props.formContext.setAppointmentType(type);
+  // };
 
   // formatDate = date => {
   //   return format(date, "EEEE d MMM Y | K:mm");
@@ -36,7 +35,7 @@ export default class AppointmentSubform extends Component {
   render() {
     return (
       <div>
-                <Typography>Add new appointment</Typography>
+        <Typography>Add new appointment</Typography>
 
         <TextField
           id="outlined-type-input"
@@ -47,20 +46,21 @@ export default class AppointmentSubform extends Component {
           autoComplete="type"
           margin="normal"
           variant="outlined"
-          onChange={this.handleChange}
-          value={this.state.type}
+          onChange={this.props.formContext.handleChange}
+          value={this.props.formContext.state.type}
         />
         <MuiPickersUtilsProvider utils={DateFnsUtils}>
           <DateTimePicker
             // inputVariant="outlined"
+            initialFocusedDate={new Date()}
             label="Date and Time"
             ampm={false}
             name="date"
-            value={this.state.date}
+            value={this.props.formContext.state.date}
             onChange={this.handleDateChange}
           />
         </MuiPickersUtilsProvider>
-        <Button onClick={this.handleAppointmentSave}>Save</Button>
+        {/* <Button onClick={this.handleAppointmentSave}>Save</Button> */}
       </div>
     );
   }

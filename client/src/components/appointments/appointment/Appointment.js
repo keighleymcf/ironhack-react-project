@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import AuthContext from "../../../contexts/AuthContext";
 import axios from "axios";
-import {Link} from "react-router-dom"
+import { Link } from "react-router-dom";
 import {
   Typography,
   Button,
@@ -31,24 +31,25 @@ export default class Appointment extends Component {
 
   showDeleteDialog = () => {
     this.setState({
-      showDialog: true,
+      showDialog: true
     });
   };
 
   hideDeleteDialog = () => {
     this.setState({
-      showDialog: false,
+      showDialog: false
     });
   };
 
   handleDelete = () => {
     axios.delete(`/appointments/${this.state.appointment._id}`).then(() => {
       this.hideDeleteDialog();
-      this.props.history.push("/appointments")
+      this.props.history.push("/appointments");
     });
   };
 
   componentDidMount() {
+    console.log("ghost axios in appointment");
     axios.get(`/appointments/${this.props.match.params.id}`).then(response => {
       let appointment = response.data;
       let date = appointment.date;
@@ -71,7 +72,9 @@ export default class Appointment extends Component {
           <CardContent>
             <Typography>{this.state.appointment.type}</Typography>
             <Typography>{this.state.appointment.date}</Typography>
-            <Link to={`/appointments/edit/${this.state.appointment._id}`}><Button>Edit appointment</Button></Link>
+            <Link to={`/appointments/edit/${this.state.appointment._id}`}>
+              <Button>Edit appointment</Button>
+            </Link>
             <Button onClick={this.showDeleteDialog}>Delete appointment</Button>
           </CardContent>
         </Card>
