@@ -1,0 +1,63 @@
+.landing {
+  text-align: left;
+  width: 100vw;
+  height: 480px;
+  background-image: url("https://images.unsplash.com/photo-1532938911079-1b06ac7ceec7?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1489&q=80");
+  background-size: cover;
+  // background-position: center left;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.title {
+  background: -webkit-linear-gradient(15deg, #1c78ad 0%, #72bbb2 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-size: 3.5rem;
+  width: 330px;
+}
+
+.skew {
+  transform: skew(-20deg);
+  background-color: tomato;
+  display: flex;
+  justify-content: center;
+}
+
+h3 {
+  color: white;
+}
+
+.button-container {
+  display: flex;
+  justify-content: space-around;
+}
+
+/*
+const Title = styled.h1`
+  
+`;
+
+const Button = styled.button`
+  border: 3px solid #72bbb2;
+  border-radius: 100px;
+  background: transparent;
+  margin: 30px 10px 30px 0px;
+  font-size: 1.1rem;
+  padding: 10px 0px;
+  width: 110px;
+`;
+
+const Tile = styled.div`
+  width: 95%;
+  padding: 2.5%;
+  border: 3px solid #80d0c7;
+  border-radius: 10px;
+  margin-bottom: 15px;
+  h2 {
+    width: 95%;
+  }
+`;
+
+export { HomeDiv, Title, Button, Tile };*/

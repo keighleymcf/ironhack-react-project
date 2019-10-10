@@ -1,7 +1,8 @@
 import React, { Component } from "react";
-import "./App.scss";
-// keep material ui baseline design?
-import CssBaseline from "@material-ui/core/CssBaseline";
+// import "./App.scss";
+import { ThemeProvider } from "@material-ui/styles";
+import mainTheme from "./App.styles.js";
+
 import Home from "./components/home/Home";
 import { Route, Switch, Redirect } from "react-router-dom";
 import Navbar from "./components/navbar/Navbar";
@@ -35,122 +36,127 @@ export default class App extends Component {
   render() {
     return (
       <div className="App">
-        <AuthProvider value={{ user: this.state.user, setUser: this.setUser }}>
-          <Switch>
-            <Route exact path="/" component={Home} />
-            <>
-              <Navbar />
-              <Switch>
-              {/* Signup and Login only available if no user is logged in */}
-              <Route
-                exact
-                path="/auth/signup"
-                render={props => {
-                  if (!this.state.user) return <Signup {...props} />;
-                  else return <Redirect to="/dashboard" />;
-                }}
-              />
-              <Route
-                exact
-                path="/auth/login"
-                render={props => {
-                  if (!this.state.user) return <Login {...props} />;
-                  else return <Redirect to="/dashboard" />;
-                }}
-              />
-              {/* These routes are only avialable if a user is logged in */}
-              <Route
-                exact
-                path="/dashboard"
-                render={props => {
-                  if (this.state.user) return <Dashboard {...props} />;
-                  else return <Redirect to="/" />;
-                }}
-              />
-              <Route
-                exact
-                path="/appointments"
-                render={props => {
-                  if (this.state.user) return <Appointments {...props} />;
-                  else return <Redirect to="/" />;
-                }}
-              />
-              <Route
-                exact
-                path="/appointments/new"
-                render={props => {
-                  if (this.state.user) return <NewAppointment {...props} />;
-                  else return <Redirect to="/" />;
-                }}
-              />
-              <Route
-                exact
-                path="/appointments/:id"
-                render={props => {
-                  if (this.state.user) return <Appointment {...props} />;
-                  else return <Redirect to="/" />;
-                }}
-              />
-              <Route
-                exact
-                path="/appointments/edit/:id"
-                render={props => {
-                  if (this.state.user) return <EditAppointment {...props} />;
-                  else return <Redirect to="/" />;
-                }}
-              />
-              <Route
-                exact
-                path="/practices"
-                render={props => {
-                  if (this.state.user) return <Practices {...props} />;
-                  else return <Redirect to="/" />;
-                }}
-              />
-              <Route
-                exact
-                path="/practices/search"
-                render={props => {
-                  if (this.state.user) return <PracticeSearch {...props} />;
-                  else return <Redirect to="/" />;
-                }}
-              />
-              <Route
-                exact
-                path="/practices/new"
-                render={props => {
-                  if (this.state.user) return <NewPractice {...props} />;
-                  else return <Redirect to="/" />;
-                }}
-              />
-              <Route
-                exact
-                path="/practices/:id"
-                render={props => {
-                  if (this.state.user) return <Practice {...props} />;
-                  else return <Redirect to="/" />;
-                }}
-              />
-              <Route
-                exact
-                path="/practices/edit/:id"
-                render={props => {
-                  if (this.state.user) return <EditPractice {...props} />;
-                  else return <Redirect to="/" />;
-                }}
-              />
-              <Route
-                exact
-                path="/series"
-                render={props => {
-                  if (this.state.user) return <Series {...props} />;
-                  else return <Redirect to="/" />;
-                }}
-              />
-              </Switch>
-            </>
-          </Switch>
-        </AuthProvider>
+        <ThemeProvider theme={mainTheme}>
+          <AuthProvider
+            value={{ user: this.state.user, setUser: this.setUser }}
+          >
+            <Switch>
+              <Route exact path="/" component={Home} />
+              <>
+                <Navbar />
+                <Switch>
+                  {/* Signup and Login only available if no user is logged in */}
+                  <Route
+                    exact
+                    path="/auth/signup"
+                    render={props => {
+                      if (!this.state.user) return <Signup {...props} />;
+                      else return <Redirect to="/dashboard" />;
+                    }}
+                  />
+                  <Route
+                    exact
+                    path="/auth/login"
+                    render={props => {
+                      if (!this.state.user) return <Login {...props} />;
+                      else return <Redirect to="/dashboard" />;
+                    }}
+                  />
+                  {/* These routes are only avialable if a user is logged in */}
+                  <Route
+                    exact
+                    path="/dashboard"
+                    render={props => {
+                      if (this.state.user) return <Dashboard {...props} />;
+                      else return <Redirect to="/" />;
+                    }}
+                  />
+                  <Route
+                    exact
+                    path="/appointments"
+                    render={props => {
+                      if (this.state.user) return <Appointments {...props} />;
+                      else return <Redirect to="/" />;
+                    }}
+                  />
+                  <Route
+                    exact
+                    path="/appointments/new"
+                    render={props => {
+                      if (this.state.user) return <NewAppointment {...props} />;
+                      else return <Redirect to="/" />;
+                    }}
+                  />
+                  <Route
+                    exact
+                    path="/appointments/:id"
+                    render={props => {
+                      if (this.state.user) return <Appointment {...props} />;
+                      else return <Redirect to="/" />;
+                    }}
+                  />
+                  <Route
+                    exact
+                    path="/appointments/edit/:id"
+                    render={props => {
+                      if (this.state.user)
+                        return <EditAppointment {...props} />;
+                      else return <Redirect to="/" />;
+                    }}
+                  />
+                  <Route
+                    exact
+                    path="/practices"
+                    render={props => {
+                      if (this.state.user) return <Practices {...props} />;
+                      else return <Redirect to="/" />;
+                    }}
+                  />
+                  <Route
+                    exact
+                    path="/practices/search"
+                    render={props => {
+                      if (this.state.user) return <PracticeSearch {...props} />;
+                      else return <Redirect to="/" />;
+                    }}
+                  />
+                  <Route
+                    exact
+                    path="/practices/new"
+                    render={props => {
+                      if (this.state.user) return <NewPractice {...props} />;
+                      else return <Redirect to="/" />;
+                    }}
+                  />
+                  <Route
+                    exact
+                    path="/practices/:id"
+                    render={props => {
+                      if (this.state.user) return <Practice {...props} />;
+                      else return <Redirect to="/" />;
+                    }}
+                  />
+                  <Route
+                    exact
+                    path="/practices/edit/:id"
+                    render={props => {
+                      if (this.state.user) return <EditPractice {...props} />;
+                      else return <Redirect to="/" />;
+                    }}
+                  />
+                  <Route
+                    exact
+                    path="/series"
+                    render={props => {
+                      if (this.state.user) return <Series {...props} />;
+                      else return <Redirect to="/" />;
+                    }}
+                  />
+                </Switch>
+              </>
+            </Switch>
+          </AuthProvider>
+        </ThemeProvider>
       </div>
     );
   }

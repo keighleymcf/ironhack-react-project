@@ -1,6 +1,7 @@
 import React from "react";
 import AuthContext from "../../contexts/AuthContext";
-import { HomeDiv, Title, Button, Tile } from "./Home.styles";
+import "./Home.styles.scss";
+import { Button, Card, CardContent } from "@material-ui/core";
 import { Link, Redirect } from "react-router-dom";
 import { logout } from "../../services/api";
 
@@ -22,58 +23,69 @@ class Home extends React.Component {
     let user = this.context.user;
     if (!user) {
       return (
-        <>
+        <div className="button-container">
           <Link to="/auth/signup">
             <Button>Sign up</Button>
           </Link>
           <Link to="/auth/login">
             <Button>Log in</Button>
           </Link>
-        </>
+        </div>
       );
     } else {
       return (
-        <>
+        <div className="button-container">
           <Link to="/dashboard">
             <Button>My Dashboard</Button>
           </Link>
           <br />
           <Button onClick={this.handleLogout}>Log out</Button>
-        </>
+        </div>
       );
     }
   };
 
   render() {
     return (
-      <HomeDiv>
-        <div>
-          <Title>Never forget another doctor's appointment</Title>
+      <div>
+        <div className="landing">
+          <h1 className="title">Never forget another doctor's appointment</h1>
           <this.Buttons />
         </div>
-        <div>
-          <Tile>
-            <h2>
-              Keep track of individual appointments and series of recurring
-              appointments
-            </h2>
-          </Tile>
-          <Tile>
-            <h2>Store contact details for all your doctors in one place</h2>
-          </Tile>
-          <Tile>
-            <h2>
-              Set reminders to make new appointments and let the app do the
-              thinking for you
-            </h2>
-          </Tile>
-          <Tile>
-            <h2>
-              Encrypted data storage ensures your sensitive information is safe
-            </h2>
-          </Tile>
+        <div className="tile-containers">
+          <Card>
+            <CardContent>
+              <h2>
+                Keep track of appointments and store contact details for all
+                your doctors in one place
+              </h2>
+            </CardContent>
+          </Card>
+          <Card>
+            <CardContent>
+              <div className="skew">
+                <h3>Coming soon!</h3>
+              </div>
+              <h2 className="coming-soon">
+                Track recurring appointments and set reminders, so the app does
+                the thinking for you
+              </h2>
+            </CardContent>
+          </Card>
+          <Card>
+            <CardContent>
+              <div className="skew">
+                <h3>Coming soon!</h3>
+              </div>
+
+              <h2 class="coming-soon">
+                Encrypted data storage ensures your sensitive information is
+                safe
+              </h2>
+            </CardContent>
+          </Card>
         </div>
-      </HomeDiv>
+      </div>
     );
   }
 }
