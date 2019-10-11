@@ -54,6 +54,9 @@ class Home extends React.Component {
           <div>
             <h1 className="title">Never forget another doctor's appointment</h1>
             <this.Buttons />
+            <div className="home-img">
+              <img className="home-arrow" src="/angle-arrow-down.png" />
+            </div>
           </div>
         </div>
         <div className="tile-containers">
