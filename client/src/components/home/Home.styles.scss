@@ -32,11 +32,14 @@
   background-color: tomato;
   display: flex;
   justify-content: center;
+  h3 {
+    transform: skew(20deg);
+  }
 }
 
 h3 {
   color: white;
-  transform: skew(20deg);
+  // transform: skew(20deg);
 }
 
 .button-container {
