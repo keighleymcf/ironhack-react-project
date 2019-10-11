@@ -35,8 +35,7 @@ export default class AppointmentSubform extends Component {
   render() {
     return (
       <div>
-        <Typography>Add new appointment</Typography>
-
+        {/* <Typography>Add new appointment</Typography> */}
         <TextField
           id="outlined-type-input"
           label="Type of appointment"

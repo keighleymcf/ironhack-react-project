@@ -25,10 +25,10 @@ class Home extends React.Component {
       return (
         <div className="button-container">
           <Link to="/auth/signup">
-            <Button>Sign up</Button>
+            <Button className="home-btn">Sign up</Button>
           </Link>
           <Link to="/auth/login">
-            <Button>Log in</Button>
+            <Button className="home-btn">Log in</Button>
           </Link>
         </div>
       );
@@ -36,10 +36,12 @@ class Home extends React.Component {
       return (
         <div className="button-container">
           <Link to="/dashboard">
-            <Button>My Dashboard</Button>
+            <Button className="home-btn">My Dashboard</Button>
           </Link>
           <br />
-          <Button onClick={this.handleLogout}>Log out</Button>
+          <Button className="home-btn" onClick={this.handleLogout}>
+            Log out
+          </Button>
         </div>
       );
     }
@@ -50,8 +52,8 @@ class Home extends React.Component {
       <div>
         <div className="landing">
           <div>
-          <h1 className="title">Never forget another doctor's appointment</h1>
-          <this.Buttons />
+            <h1 className="title">Never forget another doctor's appointment</h1>
+            <this.Buttons />
           </div>
         </div>
         <div className="tile-containers">

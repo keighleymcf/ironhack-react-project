@@ -157,7 +157,7 @@ class NewAppointment extends Component {
                 <FormConsumer>
                   {formContext => (
                     <>
-                      <Typography variant="h1">Add an appointment</Typography>
+                      <h1>Add an appointment</h1>
                       <Stepper
                         activeStep={this.state.activeStep}
                         orientation="vertical"
@@ -180,10 +180,11 @@ class NewAppointment extends Component {
                                     {this.state.activeStep ===
                                     steps.length - 1 ? (
                                       <Button
+                                        className="btn"
                                         variant="contained"
                                         color="primary"
                                         onClick={this.handleSubmit}
-                                        className={classes.button}
+                                        // className={classes.button}
                                       >
                                         Save appointment
                                       </Button>

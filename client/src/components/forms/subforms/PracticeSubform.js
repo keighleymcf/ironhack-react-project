@@ -7,10 +7,11 @@ import {
   Typography,
   InputLabel,
   FormControl,
-  Select, Dialog,
+  Select,
+  Dialog,
   DialogContent,
   DialogContentText,
-  DialogActions,
+  DialogActions
 } from "@material-ui/core";
 
 export default class PracticeSubform extends Component {
@@ -36,11 +37,11 @@ export default class PracticeSubform extends Component {
 
   handleSelect = event => {
     const selectedPracticeId = event.target.value;
-if (selectedPracticeId === "new") {
-  this.showDialog()
-} else {
+    if (selectedPracticeId === "new") {
+      this.showDialog();
+    } else {
       this.props.formContext.setPractice(selectedPracticeId);
-}
+    }
   };
 
   showDialog = () => {
@@ -51,23 +52,25 @@ if (selectedPracticeId === "new") {
 
   hideDialog = () => {
     this.setState({
-      showDialog: false,
+      showDialog: false
     });
   };
 
   handleNewPracticeSubmit = () => {
     const { type, name, street, city, zip, phone } = this.state;
-    axios.post("/practices", {
-      type,
-      name,
-      street,
-      city,
-      zip,
-      phone
-    }).then(()=> {
-      this.hideDialog()
-      this.getPractices()
-    })
+    axios
+      .post("/practices", {
+        type,
+        name,
+        street,
+        city,
+        zip,
+        phone
+      })
+      .then(() => {
+        this.hideDialog();
+        this.getPractices();
+      });
   };
 
   getPractices = () => {
@@ -75,16 +78,16 @@ if (selectedPracticeId === "new") {
       const practices = response.data;
       this.setState({ practices });
     });
-  }
+  };
 
   componentDidMount() {
-    this.getPractices()
+    this.getPractices();
   }
 
   render() {
     return (
       <div>
-        <Typography>Choose from existing practices</Typography>
+        <h2>Choose a practice</h2>
         <FormControl
           variant="outlined"
           // className={classes.formControl}
@@ -104,91 +107,97 @@ if (selectedPracticeId === "new") {
               name: "selectedPractice",
               id: "outlined-practices-native-simple"
             }}
-          > <option> </option>
-           {this.state.practices.map(practice => {
-              return(
+          >
+            {" "}
+            <option> </option>
+            {this.state.practices.map(practice => {
+              return (
                 <option
-                value={practice._id}>{`${practice.name}, ${practice.address.street}`}</option>
-              )
+                  value={practice._id}
+                >{`${practice.name}, ${practice.address.street}`}</option>
+              );
             })}
             <option value="new">Add a new practice...</option>
           </Select>
         </FormControl>
         <Dialog open={this.state.showDialog}>
-  <DialogContent>
-  <DialogContentText><Typography>Add new practice</Typography>
-          <TextField
-            id="outlined-name-input"
-            label="Name of practice"
-            //className={classes.textField}
-            name="name"
-            //autoComplete="name"
-            margin="normal"
-            variant="outlined"
-            onChange={this.handleChange}
-            value={this.state.name}
-          />
-          <TextField
-            id="outlined-type-input"
-            label="Type of practice"
-            //className={classes.textField}
-            name="type"
-            autoComplete="type"
-            margin="normal"
-            variant="outlined"
-            onChange={this.handleChange}
-            value={this.state.type}
-          />
-          <TextField
-            id="outlined-street-input"
-            label="Street"
-            //className={classes.textField}
-            name="street"
-            //autoComplete="type"
-            margin="normal"
-            variant="outlined"
-            onChange={this.handleChange}
-            value={this.state.street}
-          />
-          <TextField
-            id="outlined-city-input"
-            label="City"
-            //className={classes.textField}
-            name="city"
-            //autoComplete="city"
-            margin="normal"
-            variant="outlined"
-            onChange={this.handleChange}
-            value={this.state.city}
-          />
-          <TextField
-            id="outlined-zip-input"
-            label="Zip code"
-            //className={classes.textField}
-            name="zip"
-            // autoComplete="zip"
-            margin="normal"
-            variant="outlined"
-            onChange={this.handleChange}
-            value={this.state.zip}
-          />
-          <TextField
-            id="outlined-phone-input"
-            label="Phone number"
-            //className={classes.textField}
-            name="phone"
-            //autoComplete="phone"
-            margin="normal"
-            variant="outlined"
-            onChange={this.handleChange}
-            value={this.state.phone}
-          /></DialogContentText>
-          <DialogActions>
-          <Button onClick={this.handleNewPracticeSubmit}>Save new practice</Button>
-          </DialogActions>
+          <DialogContent>
+            <DialogContentText>
+              <Typography>Add new practice</Typography>
+              <TextField
+                id="outlined-name-input"
+                label="Name of practice"
+                //className={classes.textField}
+                name="name"
+                //autoComplete="name"
+                margin="normal"
+                variant="outlined"
+                onChange={this.handleChange}
+                value={this.state.name}
+              />
+              <TextField
+                id="outlined-type-input"
+                label="Type of practice"
+                //className={classes.textField}
+                name="type"
+                autoComplete="type"
+                margin="normal"
+                variant="outlined"
+                onChange={this.handleChange}
+                value={this.state.type}
+              />
+              <TextField
+                id="outlined-street-input"
+                label="Street"
+                //className={classes.textField}
+                name="street"
+                //autoComplete="type"
+                margin="normal"
+                variant="outlined"
+                onChange={this.handleChange}
+                value={this.state.street}
+              />
+              <TextField
+                id="outlined-city-input"
+                label="City"
+                //className={classes.textField}
+                name="city"
+                //autoComplete="city"
+                margin="normal"
+                variant="outlined"
+                onChange={this.handleChange}
+                value={this.state.city}
+              />
+              <TextField
+                id="outlined-zip-input"
+                label="Zip code"
+                //className={classes.textField}
+                name="zip"
+                // autoComplete="zip"
+                margin="normal"
+                variant="outlined"
+                onChange={this.handleChange}
+                value={this.state.zip}
+              />
+              <TextField
+                id="outlined-phone-input"
+                label="Phone number"
+                //className={classes.textField}
+                name="phone"
+                //autoComplete="phone"
+                margin="normal"
+                variant="outlined"
+                onChange={this.handleChange}
+                value={this.state.phone}
+              />
+            </DialogContentText>
+            <DialogActions>
+              <Button className="btn" onClick={this.handleNewPracticeSubmit}>
+                Save new practice
+              </Button>
+            </DialogActions>
           </DialogContent>
-</Dialog>
-        
+        </Dialog>
       </div>
     );
   }

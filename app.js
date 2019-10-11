@@ -53,7 +53,7 @@ app.use(
 app.use(express.static(path.join(__dirname, "/client/build")));
 
 // default value for title local
-app.locals.title = "kill all humans - working title";
+app.locals.title = "AppointerMed";
 
 // Enable authentication using session + passport
 app.use(

@@ -18,11 +18,13 @@
 }
 
 .title {
-  background: -webkit-linear-gradient(15deg, #1c78ad 0%, #72bbb2 100%);
+  background: -webkit-linear-gradient(15deg, #434343 0%, black 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   font-size: 3.5rem;
   width: 330px;
+  padding-left: 20px;
+  text-align: left;
 }
 
 .skew {
@@ -40,6 +42,16 @@ h3 {
 .button-container {
   display: flex;
   justify-content: space-around;
+  padding: 20px;
+}
+
+.home-btn {
+  background-image: linear-gradient(
+    to top,
+    #c4c5c7 0%,
+    #dcdddf 52%,
+    #ebebeb 100%
+  );
 }
 
 /*

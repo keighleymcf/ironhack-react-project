@@ -32,6 +32,7 @@ export default class Dashboard extends Component {
                 src="/ibrahim-boran-pV5arhEZHiA-unsplash.jpg"
                 alt="My Series"
               />
+              <h3 className="coming">Coming soon!</h3>
               <h2>My Appointment Series</h2>
             </CardContent>
           </Card>

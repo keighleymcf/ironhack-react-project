@@ -5,7 +5,7 @@ export default class SeriesSubform extends Component {
   render() {
     return (
       <div>
-        <Typography>Save this appointment?</Typography>
+        <h2>Save this appointment?</h2>
         {/* <Typography>{this.props.formContext.state.name}</Typography>
             <Typography>{this.props.formContext.state.date}</Typography> */}
       </div>

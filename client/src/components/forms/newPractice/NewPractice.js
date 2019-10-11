@@ -42,7 +42,7 @@ export default class NewPractice extends Component {
 
     return (
       <div>
-        <Typography variant="h1">Add a practice</Typography>
+        <h1>Add a practice</h1>
         <Card>
           <CardContent>
             <TextField
@@ -111,12 +111,18 @@ export default class NewPractice extends Component {
               onChange={this.handleChange}
               value={this.state.phone}
             />
-            <Button onClick={this.handleSubmit}>Save</Button>
+            <div className="practices">
+            <Button className="btn" onClick={this.handleSubmit}>
+              Save
+            </Button>
+            </div>
+            <div className="practices">
+              <Link to="/practices">
+                <Button className="home-btn">See all my practices</Button>
+              </Link>
+            </div>{" "}
           </CardContent>
         </Card>
-        <Link to="/practices">
-          <Button>See all my practices</Button>
-        </Link>
       </div>
     );
   }

@@ -124,7 +124,6 @@ export default class PracticeSearch extends Component {
   };
 
   componentDidMount() {
-    console.log("COM DID MOUNT");
     this.getPractices();
   }
 
@@ -147,23 +146,23 @@ export default class PracticeSearch extends Component {
           onChange={this.onSearch}
           value={this.state.query}
         />
-        <div>
-          <Typography>Can't find your practice?</Typography>
+        <div className="practices">
+          <h2>Can't find your practice?</h2>
           <Link to="/practices/new">
-            <Button>Add new practice</Button>
+            <Button className="btn">Add new practice</Button>
           </Link>
         </div>
         <div>
-          <Typography>Practice results</Typography>
+          <h2>Practice results</h2>
           {this.state.practices.map(practice => {
             return (
-              <Card key={practice._id}>
-                <CardContent>
+              <Card  key={practice._id}>
+                <CardContent className="practiceCard">
                   <div>
-                    <Typography>{practice.name}</Typography>
-                    <Typography>{practice.type}</Typography>
+                    <h4 className="apptH4">{practice.name}</h4>
+                    <h4>{practice.type}</h4>
                     {this.checkOwnerList(practice) && (
-                      <Typography>Saved in My Practices"</Typography>
+                      <h5>Saved in My Practices</h5>
                     )}
                   </div>
                   <div>
