@@ -95,9 +95,7 @@ export default class Practice extends Component {
     console.log(this.state.practice);
     return (
       <div>
-        <div>
-          <h1>Practice Details</h1>
-        </div>
+        
         <div>
           {this.state.practice !== "" && (
             <Card key={this.state.practice._id}>
