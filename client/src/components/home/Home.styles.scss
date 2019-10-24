@@ -1,13 +1,12 @@
 .landing {
   width: 100vw;
-  height: 100vh;
+  height: 99vh;
   background-image: url("https://images.unsplash.com/photo-1532938911079-1b06ac7ceec7?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1489&q=80");
   background-size: cover;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  // background-position: center left;
-
+  border-top: 8px solid #598e89;
   div: {
     margin: 15px;
     text-align: left;
@@ -19,13 +18,82 @@
 }
 
 .title {
-  background: -webkit-linear-gradient(15deg, #434343 0%, black 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  color: black;
   font-size: 3.5rem;
   width: 330px;
   padding-left: 20px;
   text-align: left;
+  font-weight: bold;
+}
+
+.button-container {
+  display: flex;
+  justify-content: space-evenly;
+  padding: 20px;
+  margin-bottom: 55px;
+}
+
+.home-btn {
+  background-image: linear-gradient(
+    to right,
+    #c4c5c7 0%,
+    #dcdddf 52%,
+    #ebebeb 100%
+  );
+}
+
+.arrow {
+  position: absolute;
+  left: 50%;
+  top: 94%;
+  // height: 50px;
+  transform: translate(-50%, -50%);
+}
+.arrow span {
+  display: block;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  border-bottom: 5px solid white;
+  border-right: 5px solid white;
+  transform: rotate(45deg);
+  margin: -10px;
+  animation: animate 2s 2;
+}
+.arrow span:nth-child(2) {
+  animation-delay: -0.2s;
+}
+
+@keyframes animate {
+  0% {
+    opacity: 0;
+    transform: rotate(45deg) translate(-8px, -8px);
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: rotate(45deg) translate(8px, 8px);
+  }
+}
+
+.logo-text {
+  color: #598e89;
+  font-family: "Big Shoulders Text", cursive;
+  font-size: 3.8rem;
+  padding-bottom: 15px;
+  margin: 25px;
+  border-bottom: dotted #c4c5c7 2px;
+  // text-decoration: underline dotted #c4c5c7;
+}
+
+.home-card {
+  margin: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .skew {
@@ -42,59 +110,3 @@ h3 {
   color: white;
   // transform: skew(20deg);
 }
-
-.button-container {
-  display: flex;
-  justify-content: space-evenly;
-  padding: 20px;
-}
-
-.home-btn {
-  background-image: linear-gradient(
-    to right,
-    #c4c5c7 0%,
-    #dcdddf 52%,
-    #ebebeb 100%
-  );
-}
-
-.home-img {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.home-arrow {
-  padding: 10px;
-  height: 25px;
-  width: 30px;
-  align-self: center;
-}
-
-/*
-const Title = styled.h1`
-  
-`;
-
-const Button = styled.button`
-  border: 3px solid #72bbb2;
-  border-radius: 100px;
-  background: transparent;
-  margin: 30px 10px 30px 0px;
-  font-size: 1.1rem;
-  padding: 10px 0px;
-  width: 110px;
-`;
-
-const Tile = styled.div`
-  width: 95%;
-  padding: 2.5%;
-  border: 3px solid #80d0c7;
-  border-radius: 10px;
-  margin-bottom: 15px;
-  h2 {
-    width: 95%;
-  }
-`;
-
-export { HomeDiv, Title, Button, Tile };*/

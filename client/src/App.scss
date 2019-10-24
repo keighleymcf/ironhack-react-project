@@ -1,6 +1,9 @@
 @import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700,900&display=swap");
 /*gradient for buttons: linear-gradient(15deg, #13547a 0%, #80d0c7 100%);*/
 /*gradient for text: (15deg, #1c78ad 0%, #72bbb2 100%)*/
+@import url("https://fonts.googleapis.com/css?family=Zilla+Slab&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Big+Shoulders+Text:700&display=swap");
+
 * {
   margin: 0;
 }
@@ -15,9 +18,7 @@
     #ebebeb 100%
   );
   background-attachment: fixed;
-  // font-size: 10px;
-  // color: black;
-  font-family: "Source Sans Pro", sans-serif;
+  font-family: "Zilla Slab", serif;
 }
 
 a {

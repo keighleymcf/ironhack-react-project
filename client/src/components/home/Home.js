@@ -54,43 +54,42 @@ class Home extends React.Component {
           <div>
             <h1 className="title">Never forget another doctor's appointment</h1>
             <this.Buttons />
-            <div className="home-img">
-              <img className="home-arrow" src="/angle-arrow-down.png" />
+            <div className="arrow">
+              <span></span>
+              <span></span>
             </div>
           </div>
         </div>
         <div className="tile-containers">
-          <Card>
-            <CardContent>
-              <h2>
-                Keep track of appointments and store contact details for all
-                your doctors in one place
-              </h2>
-            </CardContent>
-          </Card>
-          <Card>
-            <CardContent>
-              <div className="skew">
-                <h3>Coming soon!</h3>
-              </div>
-              <h2 className="coming-soon">
-                Track recurring appointments and set reminders, so the app does
-                the thinking for you
-              </h2>
-            </CardContent>
-          </Card>
-          <Card>
-            <CardContent>
-              <div className="skew">
-                <h3>Coming soon!</h3>
-              </div>
-
-              <h2 class="coming-soon">
-                Encrypted data storage ensures your sensitive information is
-                safe
-              </h2>
-            </CardContent>
-          </Card>
+          <div className="home-card">
+            <h2 className="logo-text">AppointerMed</h2>
+            <h2>
+              An app that takes the hassle out of tracking medical appointments
+            </h2>
+          </div>
+          <div className="home-card">
+            <h2>
+              Keep track of appointments and store contact details for all your
+              doctors in one place
+            </h2>
+          </div>
+          <div className="home-card">
+            <div className="skew">
+              <h3>Coming soon!</h3>
+            </div>
+            <h2 className="coming-soon">
+              Track recurring appointments and set reminders, so the app does
+              the thinking for you
+            </h2>
+          </div>
+          <div className="home-card">
+            <div className="skew">
+              <h3>Coming soon!</h3>
+            </div>
+            <h2 className="coming-soon">
+              Encrypted data storage ensures your sensitive information is safe
+            </h2>
+          </div>
         </div>
       </div>
     );
