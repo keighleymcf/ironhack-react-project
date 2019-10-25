@@ -1,0 +1,13 @@
+.signup-login-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  button {
+    margin: 20px;
+    width: 140px;
+  }
+  p {
+    font-size: 1.2rem;
+  }
+}

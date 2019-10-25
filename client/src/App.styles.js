@@ -12,18 +12,6 @@ const mainTheme = createMuiTheme({
     primary: {
       main: "#80cbc4"
     }
-  },
-  typography: {
-    fontFamily: "'Source Sans Pro', sans-serif"
-
-    // button: {
-
-    // }
-  },
-  button: {
-    background: "-webkit-linear-gradient(15deg, #1c78ad 0%, #72bbb2 100%)",
-    margin: "10px",
-    color: "white"
   }
 });
 

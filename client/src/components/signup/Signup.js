@@ -1,6 +1,8 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 import { TextField, withStyles } from "@material-ui/core";
 import signupStyles from "./Signup.styles";
+import "./signup.scss";
 //LOOK INTO creating siNGLe handlechange function in external file
 //import { handleChange } from "../componentScripts/componentScripts";
 import AuthContext from "../../contexts/AuthContext";
@@ -45,39 +47,41 @@ class Signup extends Component {
   render() {
     const { classes } = this.props;
     return (
-      <div>
-        <h2>Sign up</h2>
-        <div>
-          <TextField
-            id="outlined-email-input"
-            label="Email"
-            className={classes.textField}
-            type="email"
-            name="username"
-            autoComplete="email"
-            margin="normal"
-            variant="outlined"
-            onChange={this.handleChange}
-            value={this.state.username}
-          />
-          <TextField
-            id="outlined-password-input"
-            label="Password"
-            className={classes.textField}
-            type="password"
-            name="password"
-            autoComplete="current-password"
-            margin="normal"
-            variant="outlined"
-            onChange={this.handleChange}
-            value={this.state.password}
-          />
-          {/* insert alert here */}
-          <h3>{this.state.message}</h3>
-        </div>
+      <div className="signup-login-container">
+        <h2 className="heading">Sign up</h2>
+        <TextField
+          id="outlined-email-input"
+          label="Email"
+          className={classes.textField}
+          type="email"
+          name="username"
+          autoComplete="email"
+          required={true}
+          margin="normal"
+          variant="outlined"
+          onChange={this.handleChange}
+          value={this.state.username}
+        />
+        <TextField
+          id="outlined-password-input"
+          label="Password"
+          className={classes.textField}
+          type="password"
+          name="password"
+          autoComplete="current-password"
+          margin="normal"
+          variant="outlined"
+          onChange={this.handleChange}
+          value={this.state.password}
+        />
+        {/* insert alert here */}
+        <h3>{this.state.message}</h3>
         <button type="submit" onClick={this.handleSubmit}>
           Sign up
         </button>
+        <p>
+          Already have an account? <Link to="/login">Log in</Link>
+        </p>
       </div>
     );
   }

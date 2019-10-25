@@ -76,12 +76,6 @@
   }
 
   .home-btn {
-    // background-image: linear-gradient(
-    //   to right,
-    //   #c4c5c7 0%,
-    //   #dcdddf 52%,
-    //   #ebebeb 100%
-    // );
     width: 140px;
     margin: 0 10px 10px 10px;
   }
@@ -90,7 +84,6 @@
     position: absolute;
     left: 50%;
     top: 94%;
-    // height: 50px;
     transform: translate(-50%, -50%);
   }
   .arrow span {
@@ -102,7 +95,7 @@
     border-right: 5px solid white;
     transform: rotate(45deg);
     margin: -10px;
-    animation: animate 2s 3;
+    animation: animate 5s infinite;
   }
   .arrow span:nth-child(2) {
     animation-delay: -0.2s;
@@ -113,12 +106,17 @@
       opacity: 0;
       transform: rotate(45deg) translate(-8px, -8px);
     }
-    50% {
+    30% {
       opacity: 1;
+      transform: rotate(45deg) translate(0px, 0px);
+
     }
+    // 50% {
+    //   opacity: 0;
+    //   transform: rotate(45deg) translate(8px, 8px);
+    // }
     100% {
-      opacity: 0;
-      transform: rotate(45deg) translate(8px, 8px);
+      opacity: 1;
     }
   }
 
