@@ -1,112 +1,201 @@
-.landing {
-  width: 100vw;
-  height: 99vh;
-  background-image: url("https://images.unsplash.com/photo-1532938911079-1b06ac7ceec7?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1489&q=80");
-  background-size: cover;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  border-top: 8px solid #598e89;
-  div: {
-    margin: 15px;
-    text-align: left;
+@media (min-width: 0) {
+  .landing-wrapper {
+    width: 100vw;
+    height: 100vh;
+    overflow-x: hidden;
+    overflow-y: auto;
+    perspective: 2px;
+  }
+  .landing {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    //background-image: url("https://images.unsplash.com/photo-1532938911079-1b06ac7ceec7?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1489&q=80");
+    background-size: cover;
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
+    border-top: 8px solid #598e89;
+    div: {
+      margin: 15px;
+      text-align: left;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      align-items: center;
+    }
+  }
+
+  .parallax::after {
+    /* Display and position the pseudo-element */
+    content: " ";
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+
+    /* Move the pseudo-element back away from the camera,
+     * then scale it back up to fill the viewport.
+     * Because the pseudo-element is further away, it appears to move more slowly, like in real life. */
+    transform: translateZ(-1px) scale(1.5);
+    /* Force the background image to fill the whole element. */
+    //background-size: 100%;
+    /* Keep the image from overlapping sibling elements. */
+    z-index: -1;
+  }
+
+  .landing::after {
+    background-image: url("https://images.unsplash.com/photo-1532938911079-1b06ac7ceec7?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1489&q=80");
+    background-size: cover;
+  }
+
+  .logo-top {
+    font-size: 1.8rem;
+    color: black;
+    font-family: "Big Shoulders Text", cursive;
+    position: absolute;
+    right: 2%;
+    top: 2%;
+  }
+
+  .title {
+    color: black;
+    font-size: 3.5rem;
+    width: 330px;
+    padding-left: 20px;
+    text-align: left;
+    font-weight: bold;
+  }
+
+  .button-container {
+    display: flex;
+    justify-content: space-evenly;
+    padding: 20px;
+    margin-bottom: 55px;
+  }
+
+  .home-btn {
+    // background-image: linear-gradient(
+    //   to right,
+    //   #c4c5c7 0%,
+    //   #dcdddf 52%,
+    //   #ebebeb 100%
+    // );
+    width: 140px;
+    margin: 0 10px 10px 10px;
+  }
+
+  .arrow {
+    position: absolute;
+    left: 50%;
+    top: 94%;
+    // height: 50px;
+    transform: translate(-50%, -50%);
+  }
+  .arrow span {
+    display: block;
+    justify-content: center;
+    width: 20px;
+    height: 20px;
+    border-bottom: 5px solid white;
+    border-right: 5px solid white;
+    transform: rotate(45deg);
+    margin: -10px;
+    animation: animate 2s 3;
+  }
+  .arrow span:nth-child(2) {
+    animation-delay: -0.2s;
+  }
+
+  @keyframes animate {
+    0% {
+      opacity: 0;
+      transform: rotate(45deg) translate(-8px, -8px);
+    }
+    50% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0;
+      transform: rotate(45deg) translate(8px, 8px);
+    }
+  }
+
+  .logo-text {
+    color: #598e89;
+    font-family: "Big Shoulders Text", cursive;
+    font-size: 3.8rem;
+    padding-bottom: 15px;
+    margin: 25px;
+    border-bottom: dotted #c4c5c7 2px;
+    // text-decoration: underline dotted #c4c5c7;
+  }
+
+  .mission {
+    font-size: 1.7rem;
+    padding: 0 10px;
+  }
+
+  .tile-containers {
+    position: relative;
+    background-image: linear-gradient(
+      to top,
+      #c4c5c7 0%,
+      #dcdddf 52%,
+      #ebebeb 100%
+    );
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 20px;
+  }
+
+  .home-card {
+    margin: 30px 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     align-items: center;
   }
-}
 
-.title {
-  color: black;
-  font-size: 3.5rem;
-  width: 330px;
-  padding-left: 20px;
-  text-align: left;
-  font-weight: bold;
-}
-
-.button-container {
-  display: flex;
-  justify-content: space-evenly;
-  padding: 20px;
-  margin-bottom: 55px;
-}
-
-.home-btn {
-  background-image: linear-gradient(
-    to right,
-    #c4c5c7 0%,
-    #dcdddf 52%,
-    #ebebeb 100%
-  );
-}
-
-.arrow {
-  position: absolute;
-  left: 50%;
-  top: 94%;
-  // height: 50px;
-  transform: translate(-50%, -50%);
-}
-.arrow span {
-  display: block;
-  justify-content: center;
-  width: 20px;
-  height: 20px;
-  border-bottom: 5px solid white;
-  border-right: 5px solid white;
-  transform: rotate(45deg);
-  margin: -10px;
-  animation: animate 2s 2;
-}
-.arrow span:nth-child(2) {
-  animation-delay: -0.2s;
-}
-
-@keyframes animate {
-  0% {
-    opacity: 0;
-    transform: rotate(45deg) translate(-8px, -8px);
+  .home-icon {
+    width: 55px;
+    height: auto;
+    padding-bottom: 20px;
   }
-  50% {
-    opacity: 1;
-  }
-  100% {
-    opacity: 0;
-    transform: rotate(45deg) translate(8px, 8px);
+
+  .safety {
+    width: 65px;
   }
 }
 
-.logo-text {
-  color: #598e89;
-  font-family: "Big Shoulders Text", cursive;
-  font-size: 3.8rem;
-  padding-bottom: 15px;
-  margin: 25px;
-  border-bottom: dotted #c4c5c7 2px;
-  // text-decoration: underline dotted #c4c5c7;
-}
-
-.home-card {
-  margin: 30px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
-.skew {
-  transform: skew(-20deg);
-  background-color: tomato;
-  display: flex;
-  justify-content: center;
-  h3 {
-    transform: skew(20deg);
+@media (min-width: 750px) {
+  .tile-containers {
+    padding: 0 20% 20px 20%;
   }
-}
-
-h3 {
-  color: white;
-  // transform: skew(20deg);
+  .logo-top {
+    font-size: 2rem;
+  }
+  .title {
+    font-size: 4rem;
+    width: 50%;
+  }
+  .home-btn {
+    width: 300px;
+    font-size: 1.7rem;
+    //margin: 20px 40px 30px 40px;
+  }
+  .home-card .logo-text {
+    font-size: 4.2rem;
+  }
+  .mission {
+    font-size: 1.7rem;
+  }
+  .home-card h2 {
+    font-size: 1.6rem;
+  }
 }

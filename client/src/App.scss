@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700,900&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Lato:400,700&display=swap");
 /*gradient for buttons: linear-gradient(15deg, #13547a 0%, #80d0c7 100%);*/
 /*gradient for text: (15deg, #1c78ad 0%, #72bbb2 100%)*/
 @import url("https://fonts.googleapis.com/css?family=Zilla+Slab&display=swap");
@@ -6,72 +6,118 @@
 
 * {
   margin: 0;
+  padding: 0;
 }
-
 #root {
-  // padding: 2.5vw;
-  height: 100vh;
-  background-image: linear-gradient(
-    to top,
-    #c4c5c7 0%,
-    #dcdddf 52%,
-    #ebebeb 100%
-  );
-  background-attachment: fixed;
-  font-family: "Zilla Slab", serif;
+  margin: 0;
+  padding: 0;
 }
 
-a {
-  color: #598e89;
-  text-decoration: none;
+@media (min-width: 0px) {
+  body {
+    // padding: 2.5vw;
+    height: 100vh;
+    background-image: linear-gradient(
+      to top,
+      #c4c5c7 0%,
+      #dcdddf 52%,
+      #ebebeb 100%
+    );
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    font-family: "Zilla Slab", serif;
+    font-size: 10px;
+  }
+
+  a {
+    color: #598e89;
+    text-decoration: none;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-weight: normal;
+  }
+
+  h1 {
+    text-align: center;
+    padding: 10px;
+  }
+
+  h5 {
+    font-weight: normal;
+    margin: 10px;
+    text-align: center;
+  }
+
+  button {
+    font-family: "Zilla Slab", serif;
+    font-weight: bold;
+    font-size: 1.3rem;
+    border: none;
+    border-radius: 100px;
+    padding: 10px 15px;
+    background-color: rgba(79, 82, 82, 0.99);
+    color: white;
+  }
+
+  .btn {
+    background: -webkit-linear-gradient(15deg, #1c78ad 0%, #72bbb2 100%);
+    margin: 10px;
+    color: white;
+  }
+
+  .apptH4 {
+    color: #598e89;
+  }
+
+  .apptLow {
+    margin-bottom: 10px;
+  }
+
+  .dlt {
+    color: tomato;
+  }
+
+  .appointmentCard,
+  .practiceCard {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .appointments,
+  .practices {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    flex-direction: column;
+  }
+
+  .skew {
+    transform: skew(-20deg);
+    background-color: tomato;
+    opacity: 0.9;
+    display: flex;
+    justify-content: center;
+    margin: 20px 0 10px 0;
+    h3 {
+      transform: skew(20deg);
+      color: white;
+      padding: 10px 30px;
+      font-size: 1.5rem;
+      font-weight: bold;
+    }
+  }
+
+  .coming-soon {
+    opacity: 0.85;
+  }
 }
 
-h1,
-h2,
-h3,
-h4 {
-  font-weight: normal;
-}
-
-h1 {
-  text-align: center;
-  padding: 10px;
-}
-
-h5 {
-  font-weight: normal;
-  margin: 10px;
-  text-align: center;
-}
-
-.btn {
-  background: -webkit-linear-gradient(15deg, #1c78ad 0%, #72bbb2 100%);
-  margin: 10px;
-  color: white;
-}
-
-.apptH4 {
-  color: #598e89;
-}
-
-.apptLow {
-  margin-bottom: 10px;
-}
-
-.dlt {
-  color: tomato;
-}
-
-.appointmentCard,
-.practiceCard {
-  display: flex;
-  justify-content: space-between;
-}
-
-.appointments,
-.practices {
-  display: flex;
-  align-items: center;
-  padding: 10px;
-  flex-direction: column;
+@media (min-width: 750px) {
+  .skew h3 {
+    font-size: 1.6rem;
+  }
 }
