@@ -67,7 +67,7 @@ class Navbar extends Component {
               onClose={this.handleClose}
             >
               <IconButton
-                // edge="start"
+                edge="start"
                 className={classes.menuButton}
                 color="inherit"
                 aria-label="menu"
@@ -94,9 +94,7 @@ class Navbar extends Component {
                 <Button>Logout</Button>
               </MenuItem>
             </Menu>
-            <Typography variant="h6" className={classes.title}>
-              AppointerMed
-            </Typography>
+            <p className="navbar-logo">AppointerMed</p>
           </Toolbar>
         </ClickAwayListener>
       </AppBar>
