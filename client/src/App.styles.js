@@ -12,7 +12,11 @@ const mainTheme = createMuiTheme({
     primary: {
       main: "#80cbc4"
     }
-  }
+  },
+  typography: {
+    fontFamily: "Zilla Slab"
+  },
+  shadows: ["none"]
 });
 
 export default mainTheme;

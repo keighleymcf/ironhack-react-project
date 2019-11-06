@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { Redirect, Link } from "react-router-dom";
 import {
   AppBar,
-  Typography,
   IconButton,
   Toolbar,
   Button,
@@ -47,7 +46,7 @@ class Navbar extends Component {
   render() {
     const classes = this.props;
     return (
-      <AppBar position="static">
+      <AppBar position="static" style={{ borderBottom: "4px solid #598e89" }}>
         <ClickAwayListener onClickAway={this.handleClose}>
           <Toolbar>
             <IconButton
@@ -67,7 +66,6 @@ class Navbar extends Component {
               onClose={this.handleClose}
             >
               <IconButton
-                edge="start"
                 className={classes.menuButton}
                 color="inherit"
                 aria-label="menu"
@@ -90,9 +88,7 @@ class Navbar extends Component {
               <MenuItem onClick={this.handleClose}>
                 <Link to="/practices/new">Add a Practice</Link>
               </MenuItem>
-              <MenuItem onClick={this.handleLogout}>
-                <Button>Logout</Button>
-              </MenuItem>
+              <MenuItem onClick={this.handleLogout}>Log out</MenuItem>
             </Menu>
             <p className="navbar-logo">AppointerMed</p>
           </Toolbar>
