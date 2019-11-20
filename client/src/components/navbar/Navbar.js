@@ -16,6 +16,12 @@ import navbarStyles from "./Navbar.styles.js";
 import { logout } from "../../services/api";
 import AuthContext from "../../contexts/AuthContext";
 
+const StyledMenu = withStyles({
+  paper: {
+    borderRadius: "0px"
+  }
+})(props => <Menu elevation={0} getContentAnchorEl={null} {...props} />);
+
 class Navbar extends Component {
   static contextType = AuthContext;
 
@@ -58,8 +64,8 @@ class Navbar extends Component {
             >
               <MenuIcon />
             </IconButton>
-            <Menu
-              id="simple-menu"
+            <StyledMenu
+              id="customized-menu"
               anchorEl={this.state.anchorEl}
               keepMounted
               open={Boolean(this.state.anchorEl)}
@@ -89,7 +95,7 @@ class Navbar extends Component {
                 <Link to="/practices/new">Add a Practice</Link>
               </MenuItem>
               <MenuItem onClick={this.handleLogout}>Log out</MenuItem>
-            </Menu>
+            </StyledMenu>
             <p className="navbar-logo">AppointerMed</p>
           </Toolbar>
         </ClickAwayListener>

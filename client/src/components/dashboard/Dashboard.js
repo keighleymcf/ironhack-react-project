@@ -13,40 +13,37 @@ export default class Dashboard extends Component {
 
   render() {
     return (
-      <div>
+      <div className="dashboard">
         <Link to="/appointments">
-          <Card>
-            <CardContent>
-              <img
-                src="/michael-browning-D0ov97Td-xM-unsplash.jpg"
-                alt="My Appointments"
-              />
-              <h2>My Appointments</h2>
-            </CardContent>
-          </Card>
+          <div className="dashcard">
+            <img
+              src="/michael-browning-D0ov97Td-xM-unsplash.jpg"
+              alt="My Appointments"
+            />
+            <h2>My Appointments</h2>
+          </div>
         </Link>
         <Link to="/series">
-          <Card>
-            <CardContent>
-              <img
-                src="/ibrahim-boran-pV5arhEZHiA-unsplash.jpg"
-                alt="My Series"
-              />
-              <h3 className="coming">Coming soon!</h3>
-              <h2>My Appointment Series</h2>
-            </CardContent>
-          </Card>
+          <div className="dashcard ">
+            <div className="skew coming-soon-box">
+              <h3>Coming soon</h3>
+            </div>
+            <img
+              src="/ibrahim-boran-pV5arhEZHiA-unsplash.jpg"
+              alt="My Series"
+              className="inactive-img"
+            />
+            <h2 className="inactive">My Appointment Series</h2>
+          </div>
         </Link>
         <Link to="/practices">
-          <Card>
-            <CardContent>
-              <img
-                src="/luis-melendez-Pd4lRfKo16U-unsplash.jpg"
-                alt="My Doctors"
-              />
-              <h2>My Doctors</h2>
-            </CardContent>
-          </Card>
+          <div className="dashcard">
+            <img
+              src="/luis-melendez-Pd4lRfKo16U-unsplash.jpg"
+              alt="My Doctors"
+            />
+            <h2>My Doctors</h2>
+          </div>
         </Link>
       </div>
     );
