@@ -24,10 +24,11 @@ export default class Dashboard extends Component {
           </div>
         </Link>
         <Link to="/series">
-          <div className="dashcard ">
+          <div className="dashcard">
             <div className="skew coming-soon-box">
               <h3>Coming soon</h3>
             </div>
+            <div className="inactive-card"> </div>
             <img
               src="/ibrahim-boran-pV5arhEZHiA-unsplash.jpg"
               alt="My Series"
