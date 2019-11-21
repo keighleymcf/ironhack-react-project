@@ -1,13 +1,9 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import "./Appointments.styles.scss";
+// import "./Appointments.styles.scss";
 import AuthContext from "../../contexts/AuthContext";
 import axios from "axios";
 import {
-  Typography,
-  Button,
-  Card,
-  CardContent,
   Menu,
   MenuItem,
   Dialog,
@@ -68,10 +64,7 @@ export default class Appointments extends Component {
   };
 
   getAppointments = () => {
-    console.log("ghost axios in appointmentS");
     axios.get("/appointments").then(response => {
-      console.log(response.data);
-
       let appointments = response.data.map(appointment => {
         let date = appointment.date;
         if (typeof date === "string") {
@@ -89,79 +82,72 @@ export default class Appointments extends Component {
   }
 
   render() {
-    console.log(this.state);
     return (
       <div className="appointments">
-        <div>
-          <h1>My Appointments</h1>
-        </div>
+        <h2 className="heading-in-app">My Appointments</h2>
         <Link to="/appointments/new">
-          <Button className="btn">Make new appointment</Button>
+          <button>Make new appointment</button>
         </Link>
-        <div>
-          {this.state.appointments.map(appointment => {
-            return (
-              <Card key={appointment._id}>
-                <CardContent>
-                  <div className="appointmentCard">
-                    <div>
-                      <h4 className="apptH4">{appointment.type}</h4>
-                      <h4>{appointment.date}</h4>
-                    </div>
-                    <div>
-                      <IconButton
-                        // className={classes.menuButton}
-                        color="inherit"
-                        aria-label="menu"
-                        id={`menu-anchor-${appointment._id}`}
-                        onClick={this.handleMenuClick}
-                      >
-                        <MoreVertIcon />
-                      </IconButton>
-                      <Menu
-                        id={`menu-${appointment._id}`}
-                        anchorEl={this.state.anchorEl}
-                        keepMounted
-                        open={Boolean(
-                          this.state.anchorEl &&
-                            this.state.anchorEl.id.includes(appointment._id)
-                        )}
-                        onClose={this.handleClose}
-                      >
-                        <MenuItem>
-                          <Link to={`/appointments/${appointment._id}`}>
-                            View appointment details for {appointment.type}
-                          </Link>
-                        </MenuItem>
-                        <MenuItem>
-                          <Link to={`/appointments/edit/${appointment._id}`}>
-                            Edit appointment
-                          </Link>
-                        </MenuItem>
-                        <MenuItem
-                          className="dlt"
-                          onClick={() => {
-                            this.showDeleteDialog(appointment._id);
-                          }}
-                        >
-                          Delete appointment
-                        </MenuItem>
-                      </Menu>
-                    </div>{" "}
-                  </div>
-                </CardContent>
-              </Card>
-            );
-          })}
-        </div>
+        {this.state.appointments.map(appointment => {
+          return (
+            <div className="appointmentCard" key={appointment._id}>
+              <div>
+                <h4 className="apptH4">{appointment.type}</h4>
+                <h4>{appointment.date}</h4>
+              </div>
+              <div>
+                <IconButton
+                  // className={classes.menuButton}
+                  color="inherit"
+                  aria-label="menu"
+                  id={`menu-anchor-${appointment._id}`}
+                  onClick={this.handleMenuClick}
+                >
+                  <MoreVertIcon />
+                </IconButton>
+                <Menu
+                  id={`menu-${appointment._id}`}
+                  anchorEl={this.state.anchorEl}
+                  keepMounted
+                  open={Boolean(
+                    this.state.anchorEl &&
+                      this.state.anchorEl.id.includes(appointment._id)
+                  )}
+                  onClose={this.handleClose}
+                >
+                  <MenuItem>
+                    <Link to={`/appointments/${appointment._id}`}>
+                      View appointment details for {appointment.type}
+                    </Link>
+                  </MenuItem>
+                  <MenuItem>
+                    <Link to={`/appointments/edit/${appointment._id}`}>
+                      Edit appointment
+                    </Link>
+                  </MenuItem>
+                  <MenuItem
+                    className="dlt"
+                    onClick={() => {
+                      this.showDeleteDialog(appointment._id);
+                    }}
+                  >
+                    Delete appointment
+                  </MenuItem>
+                </Menu>
+              </div>
+            </div>
+          );
+        })}
         <Dialog open={this.state.showDialog}>
           <DialogContent>
             <DialogContentText>
               Are you sure you want to delete this appointment?
             </DialogContentText>
             <DialogActions>
-              <Button onClick={this.hideDeleteDialog}>Cancel</Button>
-              <Button onClick={this.handleDelete}>Delete</Button>
+              <button className="cancel-btn" onClick={this.hideDeleteDialog}>
+                Cancel
+              </button>
+              <button onClick={this.handleDelete}>Delete</button>
             </DialogActions>
           </DialogContent>
         </Dialog>

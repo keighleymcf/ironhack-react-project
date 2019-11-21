@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import "./Dashboard.styles.scss";
-import { Card, CardContent } from "@material-ui/core";
 import AuthContext from "../../contexts/AuthContext";
 
 export default class Dashboard extends Component {

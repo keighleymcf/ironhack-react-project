@@ -47,9 +47,13 @@
   }
 
   h2 {
-    font-size: 1.5rem;
+    font-size: 1.6rem;
     text-align: center;
     font-weight: bold;
+  }
+
+  h4 {
+    font-size: 1.2rem;
   }
 
   .navbar-logo {
@@ -73,7 +77,7 @@
   button {
     font-family: "Zilla Slab", serif;
     font-weight: bold;
-    font-size: 1.3rem;
+    font-size: 1.2rem;
     border: none;
     border-radius: 100px;
     padding: 10px 15px;
@@ -81,36 +85,12 @@
     color: white;
   }
 
-  .btn {
-    background: -webkit-linear-gradient(15deg, #1c78ad 0%, #72bbb2 100%);
-    margin: 10px;
-    color: white;
-  }
-
-  .apptH4 {
-    color: #598e89;
+  .cancel-btn {
+    background-color: rgba(79, 82, 82, 0.85);
   }
 
   .apptLow {
     margin-bottom: 10px;
-  }
-
-  .dlt {
-    color: tomato;
-  }
-
-  .appointmentCard,
-  .practiceCard {
-    display: flex;
-    justify-content: space-between;
-  }
-
-  .appointments,
-  .practices {
-    display: flex;
-    align-items: center;
-    padding: 10px;
-    flex-direction: column;
   }
 
   .skew {
@@ -131,6 +111,43 @@
 
   .coming-soon {
     opacity: 0.9;
+  }
+
+  .appointmentCard,
+  .practiceCard {
+    display: flex;
+    justify-content: space-between;
+    background-color: whitesmoke;
+    margin: 10px 20px;
+    padding: 15px;
+    // box-sizing: border-box;
+    width: 80%;
+    border: dotted #c4c5c7 2px;
+  }
+
+  .appointments,
+  .practices {
+    display: flex;
+    align-items: center;
+    padding: 20px 10px;
+    flex-direction: column;
+  }
+
+  button {
+    margin: 20px 0 10px 0;
+  }
+
+  .heading-in-app {
+    padding-top: 10px;
+  }
+
+  .apptH4 {
+    color: #598e89;
+    font-weight: bold;
+  }
+
+  .dlt {
+    color: tomato;
   }
 }
 
