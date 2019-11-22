@@ -147,7 +147,9 @@ export default class Appointments extends Component {
               <button className="cancel-btn" onClick={this.hideDeleteDialog}>
                 Cancel
               </button>
-              <button onClick={this.handleDelete}>Delete</button>
+              <button className="delete-btn" onClick={this.handleDelete}>
+                Delete
+              </button>
             </DialogActions>
           </DialogContent>
         </Dialog>

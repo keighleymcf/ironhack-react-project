@@ -16,10 +16,10 @@ const mainTheme = createMuiTheme({
   typography: {
     fontFamily: "Zilla Slab"
   },
-  shadows: ["none"],
-  paper: {
-    top: "0px"
-  }
+  shadows: ["none"]
+  // paper: {
+  //   top: "0px"
+  // }
 });
 
 export default mainTheme;

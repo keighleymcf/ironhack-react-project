@@ -20,7 +20,7 @@ const StyledMenu = withStyles({
   paper: {
     borderRadius: "0px"
   }
-})(props => <Menu elevation={0} getContentAnchorEl={null} {...props} />);
+})(props => <Menu getContentAnchorEl={null} {...props} />);
 
 class Navbar extends Component {
   static contextType = AuthContext;

@@ -138,7 +138,7 @@ export default class Practices extends Component {
               <button className="cancel-btn" onClick={this.hideRemoveDialog}>
                 Cancel
               </button>
-              <button onClick={this.handleRemove}>Remove</button>
+              <button  className="delete-btn" onClick={this.handleRemove}>Remove</button>
             </DialogActions>
           </DialogContent>
         </Dialog>
