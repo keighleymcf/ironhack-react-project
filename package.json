@@ -27,7 +27,7 @@
     "serve-favicon": "^2.5.0"
   },
   "devDependencies": {
-    "jest": "^24.9.0",
+    "jest": "^26.0.0",
     "nodemon": "^1.19.4"
   },
   "nodemonConfig": {
