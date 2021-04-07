@@ -41,7 +41,7 @@ class Home extends React.Component {
           <button className="home-btn" onClick={this.handleLogout}>
             Log out
           </button>
-        </div>
+          </div>
       );
     }
   };
@@ -50,18 +50,18 @@ class Home extends React.Component {
     return (
       <div>
         <div className="landing-wrapper">
-          <h2 className="logo-top">AppointerMed</h2>
-          <div className="landing parallax">
-            <div>
+          <div className="landing">
+            <section className="landing-title-image">
               <h1 className="title">
                 Never forget another doctor's appointment
               </h1>
+              <img src="/two-doctors-illustration.png" alt="two doctors in personal protective equipment standing back to back"/>
+              </section>
               <this.Buttons />
               <div className="arrow">
                 <span></span>
                 <span></span>
               </div>
-            </div>
           </div>
           <div className="tile-containers">
             <div className="home-card">

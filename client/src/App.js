@@ -40,11 +40,9 @@ export default class App extends Component {
           <AuthProvider
             value={{ user: this.state.user, setUser: this.setUser }}
           >
+            <Navbar />
             <Switch>
-              <Route exact path="/" component={Home} />
-              <>
-                <Navbar />
-                <Switch>
+                <Route exact path="/" component={Home} />
                   {/* Signup and Login only available if no user is logged in */}
                   <Route
                     exact
@@ -153,8 +151,6 @@ export default class App extends Component {
                     }}
                   />
                 </Switch>
-              </>
-            </Switch>
           </AuthProvider>
         </ThemeProvider>
       </div>
