@@ -1,4 +1,4 @@
-# ironhack-react-project
+# Appointer Med, a MERN stack learning project
 
 Introducing my final Ironhack project, Appointer Med! It is a full-stack javascript application using the MERN stack (react, mongoDB, express, and node). It was created in 9 days in the Ironhack Web Development bootcamp in 2019.
 
